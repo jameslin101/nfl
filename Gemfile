@@ -38,3 +38,20 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+group :test, :development do
+  #gem 'rspec-rails'
+  #gem 'shoulda'
+  #gem 'capybara'
+  #gem 'capybara-firebug'
+  #gem 'fabrication'
+  #gem 'ffaker'
+  #gem 'factory_girl'
+  #gem 'factory_girl_rails'
+  #gem 'database_cleaner'
+  #gem 'fuubar'
+  #gem 'wirble'
+  gem 'hirb'
+  gem 'debugger'
+  gem 'awesome_print'
+ 
+end
