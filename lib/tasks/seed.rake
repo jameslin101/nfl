@@ -19,7 +19,7 @@ task :seed_qbs => [:environment] do
   puts "seeding QBs from Yahoo..."
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_qb(yahoo_id)
   end
 end
@@ -27,7 +27,7 @@ end
 task :seed_rbs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=RB"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_rb(yahoo_id)
   end  
 end
@@ -35,7 +35,7 @@ end
 task :seed_wrs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=WR"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_wr(yahoo_id)
   end
 end
@@ -43,7 +43,7 @@ end
 task :seed_tes => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_te(yahoo_id)
   end
 end
@@ -51,7 +51,7 @@ end
 task :seed_des => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DE"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_dp(yahoo_id)
   end
 end
@@ -59,7 +59,7 @@ end
 task :seed_dts => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DT"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_dp(yahoo_id)
   end
 end
@@ -67,7 +67,7 @@ end
 task :seed_nts => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=NT"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_dp(yahoo_id)
   end
 end
@@ -75,7 +75,7 @@ end
 task :seed_lbs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=LB"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_dp(yahoo_id)
   end
 end
@@ -83,7 +83,7 @@ end
 task :seed_safeties => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=S"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_dp(yahoo_id)
   end
 end
@@ -91,15 +91,14 @@ end
 task :seed_cbs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
-    make_dp(yahoo_id)
+    wait(i)    make_dp(yahoo_id)
   end
 end
 
 task :seed_kickers => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=K"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_kicker(yahoo_id)
   end
 end
@@ -107,7 +106,7 @@ end
 task :seed_punters => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=P"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 25 if i % 25 == 0
+    wait(i)    
     make_punter(yahoo_id)
   end
 end
@@ -544,5 +543,9 @@ def get_links(pos)
   links.concat(posdoc.css(".ysprow2 td:nth-child(1) a").collect { |link| link['href'][/\d+/]})
   puts links
   links
+end
+
+def wait(i)
+  sleep 2 if i % 1 == 0
 end
   
