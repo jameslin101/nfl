@@ -1,7 +1,8 @@
 class NflPlayer
   include Mongoid::Document
   embeds_many :stats
-  
+
+  field :yahoo_id, type: String 
   field :name, type: String
   field :number, type: String
   field :position, type: String
@@ -12,5 +13,6 @@ class NflPlayer
   field :born, type: String
   field :college, type: String
   field :draft, type: String
+  field :_id, type: String, default: ->{yahoo_id.to_s.parameterize}
   
 end

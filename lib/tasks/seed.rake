@@ -1,4 +1,4 @@
-task :seed_players => [:environment, :clear_qbs] do
+task :seed_players => [:environment] do
   puts "seeding players from Yahoo..."
   
   require "open-uri"
@@ -8,13 +8,8 @@ task :seed_players => [:environment, :clear_qbs] do
   # make_qb(qburl)
   
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
-  posdoc = Nokogiri::HTML(open(pos))
-  l = posdoc.css(".ysprow1 td:nth-child(1) a").map { |link| link['href']}
-  l.concat(posdoc.css(".ysprow2 td:nth-child(1) a").map { |link| link['href']})
-  
-  l.each do |i|
-    qburl = "http://sports.yahoo.com" + i + "/career"
-    make_qb(qburl)
+  get_links(pos)[0..10].each do |yahoo_id| 
+    make_qb(yahoo_id)
   end
 
   # rburl = "http://sports.yahoo.com/nfl/players/8261/career"
@@ -45,10 +40,10 @@ task :clear_qbs => [:environment] do
 
 end
 
-def make_qb(url)
+def make_qb(yahoo_id)
   
-  doc = Nokogiri::HTML(open(url))
-  qb = Qb.new
+  doc = Nokogiri::HTML(open(get_url(yahoo_id)))
+  qb = Qb.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(qb, doc)
   
   row = 3
@@ -102,7 +97,7 @@ end
 
 def make_rb(url)
   
-  doc = Nokogiri::HTML(open(url))
+  doc = Nokogiri::HTML(open(get_url(yahoo_id)))
   rb = Rb.new
   get_player_bio(rb, doc)
   
@@ -153,7 +148,7 @@ end
 
 def make_wr(url)
   
-  doc = Nokogiri::HTML(open(url))
+  doc = Nokogiri::HTML(open(get_url(yahoo_id)))
   wr = Wr.new
   get_player_bio(wr, doc)
   
@@ -210,7 +205,7 @@ end
 
 def make_te(url)
   
-  doc = Nokogiri::HTML(open(url))
+  doc = Nokogiri::HTML(open(get_url(yahoo_id)))
   te = Te.new
   get_player_bio(te, doc)
   
@@ -260,25 +255,10 @@ def make_te(url)
 end
 
 
-def get_player_bio(player, doc)
-  
-  player.name = doc.at_css(".player-name").text
-  player.number = doc.at_css(".uniform-number").text
-  player.position = doc.at_css(".position").text
-  player.team = doc.at_css(".team-name span").text
-  player.age = age(doc.at_css("time").text)
-  player.born = doc.at_css(".born").text.sub("Born: ","")
-  player.college = doc.at_css(".college span").text
-  player.weight = doc.at_css(".weight").text.sub("Weight: ","")
-  player.height = doc.at_css(".height").text.sub("Height: ","")
-  player.draft = doc.at_css(".draft").text.sub("Draft: ","")
-  player.save
-
-end
 
 def make_dp(url)
   
-  doc = Nokogiri::HTML(open(url))
+  doc = Nokogiri::HTML(open(get_url(yahoo_id)))
   dp = Dp.new
   get_player_bio(dp, doc)
   
@@ -327,7 +307,7 @@ end
 
 def make_kicker(url)
   
-  doc = Nokogiri::HTML(open(url))
+  doc = Nokogiri::HTML(open(get_url(yahoo_id)))
   kicker = Kicker.new
   get_player_bio(kicker, doc)
   
@@ -376,7 +356,7 @@ end
 
 def make_punter(url)
   
-  doc = Nokogiri::HTML(open(url))
+  doc = Nokogiri::HTML(open(get_url(yahoo_id)))
   punter = Punter.new
   get_player_bio(punter, doc)
   
@@ -416,11 +396,31 @@ def make_punter(url)
   end
   
 end
+
+
+def get_player_bio(player, doc)
+  
+  player.name = doc.at_css(".player-name").text
+  player.number = doc.at_css(".uniform-number").text
+  player.position = doc.at_css(".position").text
+  player.team = doc.at_css(".team-name span").text
+  player.age = age(doc.at_css("time").text)
+  player.born = doc.at_css(".born").text.sub("Born: ","")
+  player.college = doc.at_css(".college span").text
+  player.weight = doc.at_css(".weight").text.sub("Weight: ","")
+  player.height = doc.at_css(".height").text.sub("Height: ","")
+  player.draft = doc.at_css(".draft").text.sub("Draft: ","")
+  player.save
+
+end
+
+
 def age(dob)
   dob = dob.to_time
   now = Time.now.utc.to_date
   now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
 end
+
 
 def get_stat(doc, row, column, type)
   css_string = "table:nth-child(5) :nth-child(%i) .yspscores:nth-child(%i)" % [row, column]
@@ -440,3 +440,15 @@ def get_stat(doc, row, column, type)
   puts "return from playerhelp:" + stat.to_s
   return stat
 end
+
+
+def get_url(yahoo_id)
+  "http://sports.yahoo.com/nfl/players/" + yahoo_id.to_s + "/career"
+end
+
+def get_links(pos)
+  posdoc = Nokogiri::HTML(open(pos))
+  l = posdoc.css(".ysprow1 td:nth-child(1) a").collect { |link| link['href'][/\d+/]}
+  l.concat(posdoc.css(".ysprow2 td:nth-child(1) a").collect { |link| link['href'][/\d+/]})
+end
+  
