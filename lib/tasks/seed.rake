@@ -91,7 +91,8 @@ end
 task :seed_cbs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    wait(i)    make_dp(yahoo_id)
+    wait(i)    
+    make_dp(yahoo_id)
   end
 end
 
