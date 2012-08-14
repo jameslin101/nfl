@@ -3,63 +3,63 @@ task :seed_players => [:environment] do
   
   require "open-uri"
   
-  # pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
-  # get_links(pos)[0..5].each do |yahoo_id| 
-  #   make_qb(yahoo_id)
-  # end
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
+  get_links(pos).each do |yahoo_id| 
+    make_qb(yahoo_id)
+  end
   
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=RB"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_rb(yahoo_id)
   end  
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=WR"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_wr(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_te(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DE"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DT"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=NT"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=LB"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=S"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=K"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_kicker(yahoo_id)
   end
 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=P"
-  get_links(pos)[0..5].each do |yahoo_id| 
+  get_links(pos).each do |yahoo_id| 
     make_punter(yahoo_id)
   end
 
