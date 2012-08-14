@@ -44,7 +44,7 @@ end
 task :seed_tes => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
   get_links(pos).each_with_index do |yahoo_id, i| 
-    sleep 30 if i mod 25 == 0
+    sleep 30 if i % 25 == 0
     make_te(yahoo_id)
   end
 end
