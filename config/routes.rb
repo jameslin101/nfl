@@ -1,5 +1,4 @@
 Nfl::Application.routes.draw do
-  resources :qbs
 
   resources :nfl_players
 

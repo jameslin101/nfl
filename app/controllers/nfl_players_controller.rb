@@ -2,12 +2,13 @@ class NflPlayersController < ApplicationController
   # GET /nfl_players
   # GET /nfl_players.json
   def index
+    # raise params.inspect
     @nfl_players = NflPlayer.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @nfl_players }
-    end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @nfl_players }
+    # end
   end
 
   # GET /nfl_players/1
@@ -17,7 +18,8 @@ class NflPlayersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @nfl_player }
+      format.json { 
+        render @nfl_player.to_json }
     end
   end
 

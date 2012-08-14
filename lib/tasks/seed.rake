@@ -3,45 +3,80 @@ task :seed_players => [:environment] do
   
   require "open-uri"
   
-  # qburl = "http://sports.yahoo.com/nfl/players/5228/career"
-  # 
-  # make_qb(qburl)
+  # pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
+  # get_links(pos)[0..5].each do |yahoo_id| 
+  #   make_qb(yahoo_id)
+  # end
   
-  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
-  get_links(pos)[0..10].each do |yahoo_id| 
-    make_qb(yahoo_id)
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=RB"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_rb(yahoo_id)
+  end  
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=WR"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_wr(yahoo_id)
   end
 
-  # rburl = "http://sports.yahoo.com/nfl/players/8261/career"
-  # 
-  # make_rb(rburl)
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_te(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DE"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_dp(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DT"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_dp(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=NT"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_dp(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=LB"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_dp(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=S"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_dp(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_dp(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=K"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_kicker(yahoo_id)
+  end
+
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=P"
+  get_links(pos)[0..5].each do |yahoo_id| 
+    make_punter(yahoo_id)
+  end
+
   
-  # wrurl = "http://sports.yahoo.com/nfl/players/8826/career"
-  # make_wr(wrurl)
-  
-  # teurl = "http://sports.yahoo.com/nfl/players/6663/career"
-  # make_te(teurl)
-  
-  # dpurl = "http://sports.yahoo.com/nfl/players/7322/career"
-  # make_dp(dpurl)
-  
-  # kickerurl = "http://sports.yahoo.com/nfl/players/4587/career"
-  # make_kicker(kickerurl)
-  
-  # punterurl = "http://sports.yahoo.com/nfl/players/7275/career"
-  # make_punter(punterurl)
+
 end
 
 
 task :clear_qbs => [:environment] do
-  puts "Deleting all Qbs"
+  puts "Cleaning Database"
 
-  Qb.delete_all
+  NflPlayer.destroy_all
 
 end
 
 def make_qb(yahoo_id)
-  
+  puts "Making QB: "+yahoo_id
   doc = Nokogiri::HTML(open(get_url(yahoo_id)))
   qb = Qb.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(qb, doc)
@@ -95,10 +130,12 @@ def make_qb(yahoo_id)
   
 end
 
-def make_rb(url)
+def make_rb(yahoo_id)
   
+  puts "Making RB: "+ yahoo_id
+
   doc = Nokogiri::HTML(open(get_url(yahoo_id)))
-  rb = Rb.new
+  rb = Rb.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(rb, doc)
   
   row = 3
@@ -146,10 +183,12 @@ def make_rb(url)
   
 end
 
-def make_wr(url)
+def make_wr(yahoo_id)
+  
+  puts "Making WR: "+yahoo_id
   
   doc = Nokogiri::HTML(open(get_url(yahoo_id)))
-  wr = Wr.new
+  wr = Wr.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(wr, doc)
   
   row = 3
@@ -203,10 +242,12 @@ def make_wr(url)
   
 end
 
-def make_te(url)
+def make_te(yahoo_id)
+  
+  puts "Making TE: "+yahoo_id
   
   doc = Nokogiri::HTML(open(get_url(yahoo_id)))
-  te = Te.new
+  te = Te.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(te, doc)
   
   row = 3
@@ -256,10 +297,12 @@ end
 
 
 
-def make_dp(url)
+def make_dp(yahoo_id)
+  
+  puts "Making Defensive Player: "+yahoo_id
   
   doc = Nokogiri::HTML(open(get_url(yahoo_id)))
-  dp = Dp.new
+  dp = Dp.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(dp, doc)
   
   row = 3
@@ -305,10 +348,12 @@ def make_dp(url)
   
 end
 
-def make_kicker(url)
+def make_kicker(yahoo_id)
+  
+  puts "Making Kicker: "+yahoo_id
   
   doc = Nokogiri::HTML(open(get_url(yahoo_id)))
-  kicker = Kicker.new
+  kicker = Kicker.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(kicker, doc)
   
   row = 3
@@ -354,10 +399,12 @@ def make_kicker(url)
   
 end
 
-def make_punter(url)
+def make_punter(yahoo_id)
+  
+  puts "Making Punter: "+yahoo_id
   
   doc = Nokogiri::HTML(open(get_url(yahoo_id)))
-  punter = Punter.new
+  punter = Punter.find_or_create_by(yahoo_id: yahoo_id)
   get_player_bio(punter, doc)
   
   row = 3
@@ -424,7 +471,7 @@ end
 
 def get_stat(doc, row, column, type)
   css_string = "table:nth-child(5) :nth-child(%i) .yspscores:nth-child(%i)" % [row, column]
-  puts css_string
+  #puts css_string
   if doc.at_css(css_string).nil?
     stat = ""
   else
@@ -437,7 +484,7 @@ def get_stat(doc, row, column, type)
     when "Integer"
       stat = stat.to_i
   end
-  puts "return from playerhelp:" + stat.to_s
+  # puts "return from playerhelp:" + stat.to_s
   return stat
 end
 
@@ -448,7 +495,9 @@ end
 
 def get_links(pos)
   posdoc = Nokogiri::HTML(open(pos))
-  l = posdoc.css(".ysprow1 td:nth-child(1) a").collect { |link| link['href'][/\d+/]}
-  l.concat(posdoc.css(".ysprow2 td:nth-child(1) a").collect { |link| link['href'][/\d+/]})
+  links = posdoc.css(".ysprow1 td:nth-child(1) a").collect { |link| link['href'][/\d+/]}
+  links.concat(posdoc.css(".ysprow2 td:nth-child(1) a").collect { |link| link['href'][/\d+/]})
+  puts links
+  links
 end
   

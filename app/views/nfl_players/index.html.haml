@@ -1,0 +1,16 @@
+%h1
+  Listing nfl_players
+
+%table
+  -@nfl_players.each do |nfl_player|
+    %tr
+      %td
+        =link_to nfl_player.name, nfl_player_path(nfl_player)
+        / =nfl_player.name
+
+      %td
+        =nfl_player.position
+      %td
+        =nfl_player.number
+
+=link_to 'New Nfl player', new_nfl_player_path
