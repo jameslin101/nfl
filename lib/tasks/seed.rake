@@ -1,13 +1,21 @@
 task :seed_players => [:environment, :clear_qbs] do
   puts "seeding players from Yahoo..."
   
-  #require "player_helper"
-  #require "nokogiri"
   require "open-uri"
   
   # qburl = "http://sports.yahoo.com/nfl/players/5228/career"
   # 
   # make_qb(qburl)
+  
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
+  posdoc = Nokogiri::HTML(open(pos))
+  l = posdoc.css(".ysprow1 td:nth-child(1) a").map { |link| link['href']}
+  l.concat(posdoc.css(".ysprow2 td:nth-child(1) a").map { |link| link['href']})
+  
+  l.each do |i|
+    qburl = "http://sports.yahoo.com" + i + "/career"
+    make_qb(qburl)
+  end
 
   # rburl = "http://sports.yahoo.com/nfl/players/8261/career"
   # 
@@ -25,8 +33,8 @@ task :seed_players => [:environment, :clear_qbs] do
   # kickerurl = "http://sports.yahoo.com/nfl/players/4587/career"
   # make_kicker(kickerurl)
   
-  punterurl = "http://sports.yahoo.com/nfl/players/7275/career"
-  make_punter(punterurl)
+  # punterurl = "http://sports.yahoo.com/nfl/players/7275/career"
+  # make_punter(punterurl)
 end
 
 

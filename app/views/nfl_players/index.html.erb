@@ -1,0 +1,27 @@
+<h1>Listing nfl_players</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @nfl_players.each do |nfl_player| %>
+  <tr>
+    <td><%= nfl_player.name %></td>
+    <td><%= nfl_player.position %></td>
+    <td><%= nfl_player.number %></td>
+    <td><%= link_to 'Show', nfl_player %></td>
+    <td><%= link_to 'Edit', edit_nfl_player_path(nfl_player) %></td>
+    <td><%= link_to 'Destroy', nfl_player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New NflPlayer', new_nfl_player_path %>

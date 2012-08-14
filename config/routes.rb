@@ -1,6 +1,8 @@
 Nfl::Application.routes.draw do
   resources :nfl_players
 
+  root :to => nfl_players_path
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
