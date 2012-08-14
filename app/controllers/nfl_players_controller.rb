@@ -44,7 +44,7 @@ class NflPlayersController < ApplicationController
 
     respond_to do |format|
       if @nfl_player.save
-        format.html { redirect_to @nfl_player, notice: 'NflPlayer was successfully created.' }
+        format.html { redirect_to @nfl_player, notice: 'Nfl player was successfully created.' }
         format.json { render json: @nfl_player, status: :created, location: @nfl_player }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class NflPlayersController < ApplicationController
 
     respond_to do |format|
       if @nfl_player.update_attributes(params[:nfl_player])
-        format.html { redirect_to @nfl_player, notice: 'NflPlayer was successfully updated.' }
+        format.html { redirect_to @nfl_player, notice: 'Nfl player was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

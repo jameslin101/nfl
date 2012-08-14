@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @qb.name %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @qb.position %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%= @qb.number %>
+</p>
+
+
+<%= link_to 'Edit', edit_qb_path(@qb) %> |
+<%= link_to 'Back', qbs_path %>

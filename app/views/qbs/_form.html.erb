@@ -1,16 +1,16 @@
-<%= form_for(@nfl_player) do |f| %>
-  <% if @nfl_player.errors.any? %>
+<%= form_for(@qb) do |f| %>
+  <% if @qb.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@nfl_player.errors.count, "error") %> prohibited this nfl_player from being saved:</h2>
+      <h2><%= pluralize(@qb.errors.count, "error") %> prohibited this qb from being saved:</h2>
 
       <ul>
-      <% @nfl_player.errors.full_messages.each do |msg| %>
+      <% @qb.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -23,7 +23,6 @@
     <%= f.label :number %><br />
     <%= f.text_field :number %>
   </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>
