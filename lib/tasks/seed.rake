@@ -1,31 +1,16 @@
 require "open-uri"
 
-task :seed_players1 => [:environment, 
+task :seed_players => [:environment, 
                        :seed_qbs,
-                       :seed_rbs] do
-end
-
-task :seed_players2 => [:environment,                     
+                       :seed_rbs,                     
                        :seed_wrs,
-                       :seed_tes] do
-end
-
-task :seed_players3 => [:environment,                       
+                       :seed_tes,                       
                        :seed_des,
-                       :seed_dts] do
-end
-
-task :seed_players4 => [:environment,
+                       :seed_dts,
                        :seed_nts,
-                       :seed_lbs] do
-end
-
-task :seed_players5 => [:environment,                       
+                       :seed_lbs,                       
                        :seed_safeties,
-                       :seed_cbs] do
-end
-
-task :seed_players6 => [:environment,
+                       :seed_cbs,
                        :seed_kickers,
                        :seed_punters] do
 end
@@ -34,9 +19,10 @@ task :seed_qbs => [:environment] do
   puts "seeding QBs from Yahoo..."
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
   get_links(pos).each do |yahoo_id| 
+    
     make_qb(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_rbs => [:environment] do
@@ -44,6 +30,7 @@ task :seed_rbs => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_rb(yahoo_id)
   end  
+  sleep 60
 end
 
 task :seed_wrs => [:environment] do
@@ -51,15 +38,15 @@ task :seed_wrs => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_wr(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_tes => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
-  get_links(pos).each do |yahoo_id| 
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    sleep 30 if i mod 25 == 0
     make_te(yahoo_id)
   end
-  sleep 10
 end
 
 task :seed_des => [:environment] do
@@ -67,7 +54,7 @@ task :seed_des => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_dts => [:environment] do
@@ -75,7 +62,7 @@ task :seed_dts => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_nts => [:environment] do
@@ -83,7 +70,7 @@ task :seed_nts => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_lbs => [:environment] do
@@ -91,7 +78,7 @@ task :seed_lbs => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_safeties => [:environment] do
@@ -99,7 +86,7 @@ task :seed_safeties => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
-  sleep 10  
+  sleep 60  
 end
 
 task :seed_cbs => [:environment] do
@@ -107,7 +94,7 @@ task :seed_cbs => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_kickers => [:environment] do
@@ -115,7 +102,7 @@ task :seed_kickers => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_kicker(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
 
 task :seed_punters => [:environment] do
@@ -123,7 +110,7 @@ task :seed_punters => [:environment] do
   get_links(pos).each do |yahoo_id| 
     make_punter(yahoo_id)
   end
-  sleep 10
+  sleep 60
 end
   
 
