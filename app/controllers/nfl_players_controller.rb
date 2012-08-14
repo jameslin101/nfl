@@ -19,7 +19,7 @@ class NflPlayersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { 
-        render @nfl_player.to_json }
+        render json: @nfl_player.to_json }
     end
   end
 

@@ -9,6 +9,7 @@ gem 'mongoid'
 gem 'libxml-ruby'
 gem 'nokogiri'
 gem 'haml'
+gem 'awesome_print'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -52,6 +53,5 @@ group :test, :development do
   #gem 'wirble'
   gem 'hirb'
   gem 'debugger'
-  gem 'awesome_print'
  
 end

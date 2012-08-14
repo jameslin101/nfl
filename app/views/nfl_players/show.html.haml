@@ -1,0 +1,20 @@
+%p#notice
+  = notice
+- @nfl_player.attributes.each do |i,j| 
+  %b
+    =i.to_s
+    \:
+    / = j.class
+    / = j.class.is_a?(Array)
+    / - if j.class.is_a?(String)
+    /   Hello
+    /   - j.each do |k|
+    /     = k.key
+    /     \:
+    /     = k.value
+    / - else
+    = j.to_s
+  %p
+%p
+= link_to 'Edit', edit_nfl_player_path(@nfl_player)
+= link_to 'Back', nfl_players_path

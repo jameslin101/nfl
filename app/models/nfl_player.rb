@@ -15,4 +15,9 @@ class NflPlayer
   field :draft, type: String
   field :_id, type: String, default: ->{yahoo_id.to_s.parameterize}
   
+  def to_json
+    
+    {
+      "basic_data" => self.attributes    }
+  end
 end
