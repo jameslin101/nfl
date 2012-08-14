@@ -30,6 +30,9 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     awesome_print (1.0.2)
+    bson (1.6.4)
+    bson_ext (1.6.4)
+      bson (~> 1.6.4)
     builder (3.0.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -64,6 +67,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    mongo (1.6.4)
+      bson (~> 1.6.4)
     mongoid (3.0.3)
       activemodel (~> 3.1)
       moped (~> 1.1)
@@ -123,12 +128,14 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bson_ext
   coffee-rails (~> 3.2.1)
   debugger
   haml
   hirb
   jquery-rails
   libxml-ruby
+  mongo
   mongoid
   nokogiri
   rails (= 3.2.7)
