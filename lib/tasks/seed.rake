@@ -1,19 +1,33 @@
 require "open-uri"
 
-task :seed_players => [:environment, 
+task :seed_players1 => [:environment, 
                        :seed_qbs,
-                       :seed_rbs,
+                       :seed_rbs]
+end
+
+task :seed_players2 => [:environment,                     
                        :seed_wrs,
-                       :seed_tes,
+                       :seed_tes]
+end
+
+task :seed_players3 => [:environment,                       
                        :seed_des,
-                       :seed_dts,
+                       :seed_dts]
+end
+
+task :seed_players4 => [:environment,
                        :seed_nts,
-                       :seed_lbs,
+                       :seed_lbs]
+end
+
+task :seed_players5 => [:environment,                       
                        :seed_safeties,
-                       :seed_cbs,
+                       :seed_cbs]
+end
+
+task :seed_players6 => [:environment,
                        :seed_kickers,
-                       :seed_punters ] do
-  puts "seeding all players from Yahoo..."
+                       :seed_punters ]
 end
 
 task :seed_qbs => [:environment] do
