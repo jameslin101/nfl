@@ -1,5 +1,7 @@
 class WrStat < Stat
   
+  embedded_in :wr
+  
   #Wide Reciever - Receiving, Kickoff Returns, Punt Returns, Fumbles
   
   #Receiving

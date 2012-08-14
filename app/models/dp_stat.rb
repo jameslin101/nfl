@@ -1,5 +1,6 @@
 class DpStat < Stat
   
+  embedded_in :dp
   #Defensive Player - Tackles, Sacks, Interceptions, Misc
   
   #Tackles

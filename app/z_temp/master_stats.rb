@@ -98,15 +98,16 @@ class MasterStats < Stat
   field :safeties, type: Integer
   
   #Field Goals
-  field :0-19, type: String
-  field :20-29, type: String
-  field :30-39, type: String
-  field :40-49, type: String
-  field :50_plus, type: String
+  field :dist_0_19, type: String
+  field :dist_19_29, type: String
+  field :dist_30_39, type: String
+  field :dist_40_49, type: String
+  field :dist_50_plus, type: String
   field :fgm, type: Integer
   field :fga, type: Integer
   field :fg_pct, type: Float
-  field :fg_long, type: Float
+  field :fg_long, type: Integer
+  
   
   #PAT
   field :xpm, type: Integer

@@ -1,5 +1,7 @@
 class TeStat < Stat
   
+  embedded_in :te
+  
   #TE - Receiving, Rushing, Fumbles
   
   #Rushing

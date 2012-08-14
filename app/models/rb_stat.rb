@@ -1,5 +1,7 @@
 class RbStat < Stat
   
+  embedded_in :rb
+  
   #Running back - Rushing, Receiving, Fumbles 
   
   #Rushing
@@ -23,5 +25,8 @@ class RbStat < Stat
   field :fumbles, type: Integer
   field :fumbles_lost, type: Integer
 
+  def stats
+    qb_stats
+  end
 end
 
