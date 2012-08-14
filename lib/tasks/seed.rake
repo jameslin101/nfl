@@ -1,74 +1,119 @@
-task :seed_players => [:environment] do
-  puts "seeding players from Yahoo..."
-  
-  require "open-uri"
-  
+require "open-uri"
+
+task :seed_players => [:environment, 
+                       :seed_qbs,
+                       :seed_rbs,
+                       :seed_wrs,
+                       :seed_tes,
+                       :seed_des,
+                       :seed_dts,
+                       :seed_nts,
+                       :seed_lbs,
+                       :seed_safeties,
+                       :seed_cbs,
+                       :seed_kickers,
+                       :seed_punters ] do
+  puts "seeding all players from Yahoo..."
+end
+
+task :seed_qbs => [:environment] do
+  puts "seeding QBs from Yahoo..."
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
   get_links(pos).each do |yahoo_id| 
     make_qb(yahoo_id)
   end
-  
+  sleep 10
+end
+
+task :seed_rbs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=RB"
   get_links(pos).each do |yahoo_id| 
     make_rb(yahoo_id)
   end  
+end
 
+task :seed_wrs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=WR"
   get_links(pos).each do |yahoo_id| 
     make_wr(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_tes => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
   get_links(pos).each do |yahoo_id| 
     make_te(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_des => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DE"
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_dts => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DT"
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_nts => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=NT"
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_lbs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=LB"
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_safeties => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=S"
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
+  sleep 10  
+end
 
+task :seed_cbs => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
   get_links(pos).each do |yahoo_id| 
     make_dp(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_kickers => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=K"
   get_links(pos).each do |yahoo_id| 
     make_kicker(yahoo_id)
   end
+  sleep 10
+end
 
+task :seed_punters => [:environment] do
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=P"
   get_links(pos).each do |yahoo_id| 
     make_punter(yahoo_id)
   end
-
+  sleep 10
+end
   
 
-end
-
-
-task :clear_qbs => [:environment] do
+task :clear_players => [:environment] do
   puts "Cleaning Database"
 
   NflPlayer.destroy_all
