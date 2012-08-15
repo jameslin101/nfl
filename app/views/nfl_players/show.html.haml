@@ -36,16 +36,18 @@
 -if @nfl_player.stats[0].nil?
   %h3 No stats available for this player
 -else
-  %table
-    %tr
-      -@nfl_player.stats[0].fields.keys.each do |label|
-        %th
-          =label
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        -@nfl_player.stats[0].stat_display_order.each do |label|
+          %th
+            =label
+    %tbody
       -@nfl_player.stats.each do |stat|
         %tr  
-        -stat.attributes.each do |k, v|
+        -stat.stat_display_order.each do |label|
           %td
-            =v
+            =stat[label]
         
         
 
