@@ -4,7 +4,7 @@ class NflPlayersController < ApplicationController
   def index
     # raise params.inspect
     @nfl_players = NflPlayer.all
-
+    
     # respond_to do |format|
     #   format.html # index.html.erb
     #   format.json { render json: @nfl_players }

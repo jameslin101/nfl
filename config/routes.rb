@@ -2,7 +2,8 @@ Nfl::Application.routes.draw do
 
   resources :nfl_players
 
-  root :to => "nfl_players#index"
+  root :to => "player_grids#index", :as => :player_grids
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

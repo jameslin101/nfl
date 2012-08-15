@@ -13,6 +13,8 @@ gem 'libxml-ruby'
 gem 'nokogiri'
 gem 'haml'
 gem 'awesome_print'
+gem 'datagrid'
+gem 'will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.
