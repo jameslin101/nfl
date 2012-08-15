@@ -30,150 +30,101 @@ def seed_players
 end
 
 def seed_qbs
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_qb(yahoo_id)
-    end
-  rescue Exception
-    seed_qbs
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_qb(yahoo_id)
   end
 end
 
 def seed_rbs
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=RB"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_rb(yahoo_id)
-    end
-  rescue Exception
-    seed_rbs
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=RB"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_rb(yahoo_id)
   end  
 end
 
 def seed_wrs
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=WR"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_wr(yahoo_id)
-    end
-  rescue Exception
-    seed_wrs
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=WR"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_wr(yahoo_id)
   end
 end
 
 def seed_tes 
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_te(yahoo_id)
-    end
-  rescue Exception
-    seed_tes
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_te(yahoo_id)
   end
 end
 
 def seed_des
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DE"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_dp(yahoo_id)
-    end
-  rescue Exception
-    seed_des
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DE"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_dp(yahoo_id)
   end
 end
 
 def seed_dts
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DT"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_dp(yahoo_id)
-    end
-  rescue Exception
-    seed_dts
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DT"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_dp(yahoo_id)
   end
 end
 
 def seed_nts 
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=NT"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_dp(yahoo_id)
-    end
-  rescue Exception
-    seed_nts
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=NT"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_dp(yahoo_id)
   end
 end
 
 def seed_lbs
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=LB"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_dp(yahoo_id)
-    end
-  rescue Exception
-    seed_lbs
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=LB"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_dp(yahoo_id)
   end
 end
 
 def seed_safeties 
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=S"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_dp(yahoo_id)
-    end
-  rescue Exception
-    seed_safeties
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=S"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_dp(yahoo_id)
   end
 end
 
 def seed_cbs 
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_dp(yahoo_id)
-    end
-  rescue Exception
-    seed_cbs
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_dp(yahoo_id)
   end
 end
 
 def seed_kickers 
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=K"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_kicker(yahoo_id)
-    end
-  rescue Exception
-    seed_kickers
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=K"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_kicker(yahoo_id)
   end
 end
 
 def seed_punters 
-  begin
-    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=P"
-    get_links(pos).each_with_index do |yahoo_id, i| 
-      wait(i)    
-      make_punter(yahoo_id)
-    end
-  rescue Exception
-    seed_punters
+  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=P"
+  get_links(pos).each_with_index do |yahoo_id, i| 
+    wait(i)    
+    make_punter(yahoo_id)
   end
 end
   
-
 def clear_players 
   puts "Cleaning Database"
 
@@ -608,6 +559,6 @@ def get_links(pos)
 end
 
 def wait(i)
-  #sleep 2 if i % 1 == 0
+  sleep 5 if i % 2 == 0
 end
   
