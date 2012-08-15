@@ -11,7 +11,7 @@ class PlayerGrid
   filter(:position, :enum, :select => NflPlayer.all.distinct('position'))
   
   column(:yahoo_id)
-  column(:name)
+  column(:name, :url => proc {|p| Rails.application.routes.url_helpers.nfl_player_path(p)})
   column(:number)
   column(:position)
   column(:team)  
