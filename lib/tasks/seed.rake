@@ -1,22 +1,20 @@
 require "open-uri"
 
-task :seed_players => [:environment, 
-                       :seed_qbs,
-                       :seed_rbs,                     
-                       :seed_wrs,
-                       :seed_tes,                       
-                       :seed_des,
-                       :seed_dts,
-                       :seed_nts,
-                       :seed_lbs,                       
-                       :seed_safeties,
-                       :seed_cbs,
-                       :seed_kickers,
-                       :seed_punters] do
-end
+task :seed_players  => [:environment] do seed_players   end
+task :seed_qbs      => [:environment] do seed_qbs       end
+task :seed_rbs      => [:environment] do seed_rbs       end
+task :seed_wrs      => [:environment] do seed_wrs       end
+task :seed_tes      => [:environment] do seed_tes       end
+task :seed_des      => [:environment] do seed_des       end
+task :seed_dts      => [:environment] do seed_dts       end
+task :seed_nts      => [:environment] do seed_nts       end
+task :seed_lbs      => [:environment] do seed_lbs       end
+task :seed_safeties => [:environment] do seed_safeties  end
+task :seed_cbs      => [:environment] do seed_cbs       end
+task :seed_kickers  => [:environment] do seed_kickers   end
+task :seed_punters  => [:environment] do seed_punters   end
 
-task :seed_qbs => [:environment] do
-  puts "seeding QBs from Yahoo..."
+def seed_qbs
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -24,7 +22,7 @@ task :seed_qbs => [:environment] do
   end
 end
 
-task :seed_rbs => [:environment] do
+def seed_rbs
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=RB"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -32,7 +30,7 @@ task :seed_rbs => [:environment] do
   end  
 end
 
-task :seed_wrs => [:environment] do
+def seed_wrs
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=WR"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -40,15 +38,19 @@ task :seed_wrs => [:environment] do
   end
 end
 
-task :seed_tes => [:environment] do
-  pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
-  get_links(pos).each_with_index do |yahoo_id, i| 
-    wait(i)    
-    make_te(yahoo_id)
+def seed_tes 
+  begin
+    pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=TE"
+    get_links(pos).each_with_index do |yahoo_id, i| 
+      wait(i)    
+      make_te(yahoo_id)
+    end
+  rescue Exception
+    see_tes
   end
 end
 
-task :seed_des => [:environment] do
+def seed_des 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DE"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -56,7 +58,7 @@ task :seed_des => [:environment] do
   end
 end
 
-task :seed_dts => [:environment] do
+def seed_dts 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=DT"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -64,7 +66,7 @@ task :seed_dts => [:environment] do
   end
 end
 
-task :seed_nts => [:environment] do
+def seed_nts 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=NT"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -72,7 +74,7 @@ task :seed_nts => [:environment] do
   end
 end
 
-task :seed_lbs => [:environment] do
+def seed_lbs 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=LB"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -80,7 +82,7 @@ task :seed_lbs => [:environment] do
   end
 end
 
-task :seed_safeties => [:environment] do
+def seed_safeties 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=S"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -88,7 +90,7 @@ task :seed_safeties => [:environment] do
   end
 end
 
-task :seed_cbs => [:environment] do
+def seed_cbs 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=CB"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -96,7 +98,7 @@ task :seed_cbs => [:environment] do
   end
 end
 
-task :seed_kickers => [:environment] do
+def seed_kickers 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=K"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -104,7 +106,7 @@ task :seed_kickers => [:environment] do
   end
 end
 
-task :seed_punters => [:environment] do
+def seed_punters 
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=P"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
@@ -113,7 +115,7 @@ task :seed_punters => [:environment] do
 end
   
 
-task :clear_players => [:environment] do
+def clear_players 
   puts "Cleaning Database"
 
   NflPlayer.destroy_all
@@ -547,6 +549,6 @@ def get_links(pos)
 end
 
 def wait(i)
-  sleep 2 if i % 1 == 0
+  #sleep 2 if i % 1 == 0
 end
   
