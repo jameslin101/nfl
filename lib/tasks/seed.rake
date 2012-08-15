@@ -14,11 +14,29 @@ task :seed_cbs      => [:environment] do seed_cbs       end
 task :seed_kickers  => [:environment] do seed_kickers   end
 task :seed_punters  => [:environment] do seed_punters   end
 
+def seed_players
+  seed_qbs       
+  seed_rbs       
+  seed_wrs       
+  seed_tes       
+  seed_des       
+  seed_dts       
+  seed_nts       
+  seed_lbs       
+  seed_safeties  
+  seed_cbs       
+  seed_kickers   
+  seed_punters   
+end
+
 def seed_qbs
   pos = "http://sports.yahoo.com/nfl/players?type=position&c=NFL&pos=QB"
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
     make_qb(yahoo_id)
+  end
+  rescue Exception
+    seed_qbs
   end
 end
 
@@ -27,6 +45,9 @@ def seed_rbs
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
     make_rb(yahoo_id)
+  end
+  rescue Exception
+    seed_rbs
   end  
 end
 
@@ -35,6 +56,9 @@ def seed_wrs
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
     make_wr(yahoo_id)
+  end
+  rescue Exception
+    seed_wrs
   end
 end
 
@@ -46,7 +70,7 @@ def seed_tes
       make_te(yahoo_id)
     end
   rescue Exception
-    see_tes
+    seed_tes
   end
 end
 
@@ -56,6 +80,9 @@ def seed_des
     wait(i)    
     make_dp(yahoo_id)
   end
+  rescue Exception
+    seed_des
+  end
 end
 
 def seed_dts 
@@ -63,6 +90,9 @@ def seed_dts
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
     make_dp(yahoo_id)
+  end
+  rescue Exception
+    seed_dts
   end
 end
 
@@ -72,6 +102,9 @@ def seed_nts
     wait(i)    
     make_dp(yahoo_id)
   end
+  rescue Exception
+    seed_nts
+  end
 end
 
 def seed_lbs 
@@ -79,6 +112,9 @@ def seed_lbs
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
     make_dp(yahoo_id)
+  end
+  rescue Exception
+    seed_lbs
   end
 end
 
@@ -88,6 +124,9 @@ def seed_safeties
     wait(i)    
     make_dp(yahoo_id)
   end
+  rescue Exception
+    seed_safeties
+  end
 end
 
 def seed_cbs 
@@ -95,6 +134,9 @@ def seed_cbs
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
     make_dp(yahoo_id)
+  end
+  rescue Exception
+    seed_cbs
   end
 end
 
@@ -104,6 +146,9 @@ def seed_kickers
     wait(i)    
     make_kicker(yahoo_id)
   end
+  rescue Exception
+    seed_kickers
+  end
 end
 
 def seed_punters 
@@ -111,6 +156,9 @@ def seed_punters
   get_links(pos).each_with_index do |yahoo_id, i| 
     wait(i)    
     make_punter(yahoo_id)
+  end
+  rescue Exception
+    seed_punters
   end
 end
   
