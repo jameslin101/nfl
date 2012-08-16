@@ -1,5 +1,7 @@
 Nfl::Application.routes.draw do
 
+  devise_for :users
+
   resources :nfl_players
 
   root :to => "player_grids#index", :as => :player_grids

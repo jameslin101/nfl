@@ -21,7 +21,7 @@ gem 'devise'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'google-webfonts'
-
+gem 'voteable_mongo'
 
 # Gems used only for assets and not required
 # in production environments by default.

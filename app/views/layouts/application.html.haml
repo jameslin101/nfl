@@ -1,0 +1,46 @@
+!!!
+%html
+  %head
+    %title Fansensus
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %title= content_for?(:title) ? yield(:title) : "Delayo"
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}    
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tag
+    = javascript_include_tag "application"
+    = google_webfonts_link_tag :michroma => [400]
+    = yield :scripts
+%body
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container
+        .row
+          .span4
+            %a.title.brand(href="/") Fansen.us
+          .span4.offset4
+            .pull-right
+              %ul.nav
+                - if user_signed_in?
+                  %li.divider_vertical                
+                    = link_to current_user.email, edit_user_registration_path
+                  %li.divider_vertical                
+                    = link_to "Sign out", destroy_user_session_path, :method => :delete
+                - else 
+                  %li.divider_vertical 
+                    = link_to ('Sign in'), new_user_session_path
+
+  .container
+    .content
+      .row
+        .span12
+          - if flash[:notice]
+            .alert.alert-success
+              = flash[:notice]
+          - if flash[:error]
+            .alert.alert-error
+              = flash[:error]
+          = yield
+        %footer
