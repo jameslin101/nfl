@@ -39,7 +39,7 @@ class WrStat < Stat
     
     :recs,                   
     :receiving_yards,        
-    :receiving_yards_per_game
+    :receiving_yards_per_game,
     :yards_per_reception,    
     :long,                   
     :yac,                    
