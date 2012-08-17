@@ -22,6 +22,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(params[:poll])
 
     if @poll.save
+      raise @poll.poll_options.inspect
       redirect_to polls_path, notice: 'Poll was successfully created.' 
     else
       render action: "new" 
