@@ -5,7 +5,7 @@ class PollOption
   belongs_to :poll
   
   #has_one :nfl_player
-  field :option_test, type: String
+  field :name, type: String
   field :vote_count, type: Integer
   field :voters, type: Array, default: []
   

@@ -9,7 +9,7 @@
   =@poll.note
   %p
   - @poll.poll_options.each do |poll_option|
-    =poll_option.option_test
+    =poll_option.name
     -if !poll_option.voted(current_user)
       =link_to "vote_up", poll_option_vote_up_path(poll_option)
     -else
