@@ -5,7 +5,7 @@ class Poll
   belongs_to :user
   has_many :poll_options, :dependent => :destroy
   accepts_nested_attributes_for :poll_options, :allow_destroy => true
-  attr_accessible :question, :week, :scoring, :note, :votes, :max_vote_options, :user_votes
+  attr_accessible :poll_options_attributes, :question, :week, :scoring, :note, :votes, :max_vote_options, :user_votes
   
   QUESTION_TYPES = ["Who should I start?",
                     "Who should I pick up?"]
@@ -25,26 +25,30 @@ class Poll
 
   
   def add_vote(user)
+    v = 0
     if can_vote?(user)
-      v = self.user_votes[user._id] ||= 0
-      self.user_votes.store(user._id, v+1)
+      v = self.user_votes[user.email_clean] if self.user_votes[user.email_clean] 
+      self.user_votes.store(user.email_clean, v+1)
+      save
     else
+      raise "wtf no vote?"
       return false
     end
-    save
     return v+1
   end
   
   def unvote(user)
-    v = self.user_votes[user._id]
-    self.user_votes.store(user._id, v-1)
+    v = self.user_votes[user.email_clean]
+    self.user_votes.store(user.email_clean, v-1)
+    save
   end
   
   def can_vote?(user)
-    if v = self.user_votes[user._id]
+    if v = self.user_votes[user.email_clean]
       return v < self.max_vote_options
+    else
+      true
     end
-    true
   end
   
 end

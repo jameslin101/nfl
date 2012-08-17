@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-  include Mongo::Voter
+  #include Mongo::Voter
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -43,4 +43,8 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+  
+  def email_clean   
+    self.email.sub(".","*")
+  end
 end
