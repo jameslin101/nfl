@@ -3,6 +3,7 @@
   = link_to "log in", new_user_session_path
   to vote or answer the question.<br/>
 -else
+  -votes_left = @poll.max_vote_options - @poll.get_user_votes(current_user)
   .row
     .span3
       %h3
@@ -20,7 +21,7 @@
     .span3
       <br><br>
       Choose:
-      =@poll.max_vote_options - @poll.get_user_votes(current_user)
+      =votes_left
       more
       <br><br>
       %table.table.table-bordered.table-striped
@@ -34,4 +35,8 @@
                   =link_to "unvote", poll_option_unvote_path(poll_option), :class=> "btn"
             %td
               =poll_option.name
-            
+      <br>
+      -if votes_left = 0 then
+        =link_to "Thanks for voting! Return to main menu.", polls_path, :class => "btn"
+      
+= link_to 'Back', polls_path            
