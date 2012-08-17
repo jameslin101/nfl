@@ -1,5 +1,6 @@
 class PollsController < ApplicationController
-
+  before_filter :authenticate_user!, :except => [:index, :show]
+  
   def index
     @polls = Poll.all
   end
@@ -11,15 +12,17 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
-    2.times {@poll.poll_options.build}
+    5.times {@poll.poll_options.build}
   end
 
   def edit
     @poll = Poll.find(params[:id])
+    
   end
 
   def create
     @poll = Poll.new(params[:poll])
+    @poll.user_id = current_user.id
 
     if @poll.save
       redirect_to polls_path, notice: 'Poll was successfully created.' 

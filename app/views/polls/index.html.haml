@@ -4,6 +4,6 @@
 %ul
   -@polls.each do |poll|
     %li
-      =link_to poll.note, poll_path(poll)
+      =link_to poll.question + " by " + poll.user.email, poll_path(poll)
       
 =link_to 'New Poll', new_poll_path

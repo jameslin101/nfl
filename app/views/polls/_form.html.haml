@@ -1,42 +1,36 @@
 = form_for(@poll) do |f| 
-  / =if @poll.errors.any?
-  /   .error_explanation
-  /     %h2
-  /       = pluralize(@poll.errors.count, "error")
-  /         prohibited this poll from being saved:
-  /     %ul
-  /       - @poll.errors.full_messages.each do |msg| 
-  /         %li
-  /           = msg
+  =if @poll.errors.any?
+    %h3
+      = pluralize(@poll.errors.count, "error")
+      prohibited this poll from being saved:
+    %ul
+      - @poll.errors.full_messages.each do |msg| 
+        %li
+          = msg
+  .row
+    .span3
+      = f.label :question, "Question"
+      = f.collection_select :question, Poll::QUESTION_TYPES, :to_s, :to_s
+      %p
+      = f.label :week, "Week \#"
+      = f.collection_select :week, 1..17, :to_i, :to_i
+      %p
+      = f.label :max_vote_options, "Max Players to Vote For"
+      = f.collection_select :max_vote_options, 1..5, :to_i, :to_i
+      %p
+      = f.label :scoring, "Scoring Type"
+      = f.collection_select :scoring, Poll::SCORING_TYPES, :to_s, :to_s
+      
+    .span3
+      Enter up to 5 players:
+      <p><p>
+      = f.fields_for :poll_options do |builder|
+        = render 'poll_options_fields', f:builder
+        <p>
+    .span3
+      = f.label :note, "Notes, up to 240 characters"
+      = f.text_area :note, :rows => 10, :style => "width:400px"
+  %br
+  %br
+  = f.submit "Create Poll", :class => "btn btn-primary btn-large"
   
-  = f.label :question 
-  = f.collection_select :question, Poll::QUESTION_TYPES, :to_s, :to_s
-  %p
-  = f.fields_for :poll_options do |builder|
-    = render 'poll_options_fields', f:builder
-  %p
-  = f.label :note
-  = f.text_field :note
-
-  = f.submit
-  
-/   
-/ = form_for [@service, @status], :html => {:class => 'form-horizontal'} do |f|
-/   .control-group
-/     %label Status:
-/     .radio.inline
-/       - [['Up','The service is up.'], 
-/         ['Down', 'The service is down.'],
-/         ['Info', 'Provide Information.'],
-/         ['Problem', 'The service is experiencing intermittent problems.']].each do |state, msg|  
-/         %label
-/           = f.radio_button(:state, state)
-/           = msg
-/   .control-group
-/     = f.label "Message:"
-/     = f.text_field :message
-/   .control-group
-/     = f.label "Time:"
-/     = f.datetime_select :time
-/   .form-actions
-/     = f.submit
