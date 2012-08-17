@@ -6,9 +6,9 @@ gem 'rails', '3.2.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mongo'
-gem 'bson_ext'
+gem 'mongo', '1.6.2'
 gem 'mongoid'
+gem 'bson_ext'
 gem 'libxml-ruby'
 gem 'nokogiri'
 gem 'haml'

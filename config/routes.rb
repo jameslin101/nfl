@@ -3,8 +3,15 @@ Nfl::Application.routes.draw do
   devise_for :users
 
   resources :nfl_players
+  resources :polls 
+  resources :poll_options do
+    get :vote_up
+    get :unvote
+  end
+  
+  
 
-  root :to => "player_grids#index", :as => :player_grids
+  root :to => "polls#index"
 
 
   # The priority is based upon order of creation:
