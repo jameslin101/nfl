@@ -18,4 +18,13 @@ class NflPlayer
   def to_json
     { "basic_data" => self.attributes    }
   end
+  
+  def name_team_pos
+    self.name +
+    " (" +
+    NflPlayersHelper::team_abbr(self.team) + 
+    " - " +
+    NflPlayersHelper::position_abbr(self.position) + 
+    ")"
+  end
 end

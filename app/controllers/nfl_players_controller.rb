@@ -86,7 +86,7 @@ class NflPlayersController < ApplicationController
   def player_names
     player_regex = Regexp.new(params[:term],true)
     @players = NflPlayer.asc(:name).where(name: player_regex)
-    render json: @players.map(&:name) 
+    render json: @players.map(&:name_team_pos) 
   end
     
 end

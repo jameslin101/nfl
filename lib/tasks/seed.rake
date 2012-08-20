@@ -12,7 +12,7 @@ task :seed_lbs      => [:environment] do seed_lbs       end
 task :seed_safeties => [:environment] do seed_safeties  end
 task :seed_cbs      => [:environment] do seed_cbs       end
 task :seed_kickers  => [:environment] do seed_kickers   end
-task :seed_punters  => [:environment] do seed_punters   end
+#task :seed_punters  => [:environment] do seed_punters   end
 
 def seed_players
   seed_qbs       
@@ -26,7 +26,6 @@ def seed_players
   seed_safeties  
   seed_cbs       
   seed_kickers   
-  seed_punters   
 end
 
 def seed_qbs
