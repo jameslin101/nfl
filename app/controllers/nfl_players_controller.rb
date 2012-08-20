@@ -82,4 +82,11 @@ class NflPlayersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def player_names
+    player_regex = Regexp.new(params[:term],true)
+    @players = NflPlayer.asc(:name).where(name: player_regex)
+    render json: @players.map(&:name) 
+  end
+    
 end

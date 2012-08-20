@@ -8,11 +8,10 @@ Nfl::Application.routes.draw do
     get :vote_up
     get :unvote
   end
-  
-  
 
   root :to => "polls#index"
 
+  match "player_names" => "nfl_players#player_names", :as => :player_names
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
