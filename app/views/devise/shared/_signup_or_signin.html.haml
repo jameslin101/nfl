@@ -1,0 +1,51 @@
+.row
+  -if !devise_error_messages!.blank?
+    .span12
+      .alert.alert-error
+        = devise_error_messages!
+  .span6
+    - newuser = User.new
+    = form_for(newuser, :url => registration_path(newuser), :html=> {:class => "form-horizontal"}) do |f|
+      .well
+        %h3 New user? 
+        %h3 Sign up with Facebook:<br><br> 
+        = link_to image_tag('fb_signin.png'), user_omniauth_authorize_path(:facebook), :class =>"fb_signup"
+        <br><br><br>
+        %h3 Sign up with E-mail:
+        .control-group
+          = f.label :email, "E-mail:", :class=> "control-label"
+          .controls
+            = f.email_field :email, :class => "input-medium"
+        - if f.object.password_required?
+          .control-group
+            = f.label :password, "Password:", :class=> "control-label"
+            .controls
+              = f.password_field :password, :class => "input-medium"
+          .control-group
+            = f.label :password_confirmation, "Confirm Password:", :class=> "control-label"
+            .controls
+              = f.password_field :password_confirmation, :class => "input-medium"        
+        .form-actions
+          =f.submit "Sign up",:class => "btn btn-success btn-large"
+  .span6
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=> {:class => "form-horizontal"}) do |f|
+      .well
+        %h3 Returning user? Welcome back:
+        <br>
+        .control-group
+          = f.label :email, "E-mail:", :class=> "control-label"
+          .controls
+            = f.email_field :email, :class => "input-medium"
+        .control-group
+          = f.label :password, "Password:", :class=> "control-label"
+          .controls
+            = f.password_field :password, :class => "input-medium"
+        - if devise_mapping.rememberable?
+          .control-group
+            = f.label :remember_me, "Remember me:", :class => "control-label"
+            .controls
+              = f.check_box :remember_me
+          .form-actions
+            =f.submit "Sign in", :class => "btn btn-primary btn-large"
+            <br><br>
+            = render "devise/shared/links"

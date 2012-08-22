@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'google-webfonts'
 gem 'oauth'
 gem 'oauth-plugin'
+gem 'omniauth-facebook'
 
 # Gems used only for assets and not required
 # in production environments by default.

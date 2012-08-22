@@ -5,7 +5,7 @@ class Poll
   belongs_to :user
   has_many :poll_options, :dependent => :destroy
   accepts_nested_attributes_for :poll_options, :allow_destroy => true, :reject_if => :all_blank
-  attr_accessible :poll_options_attributes, :question, :week, :scoring, :note, :votes, :max_vote_options, :user_votes, :user
+  attr_accessible :poll_options_attributes, :question, :week, :scoring, :note, :votes, :max_vote_options, :user_votes, :user, :subtitle
   #validate :require_two_players
   validates :note, :length => {:maximum => 240}
   
@@ -17,6 +17,7 @@ class Poll
                   "PPR"]
   
   field :question,          type: String
+  field :subtitle,          type: String
   field :week,              type: Integer, default: DateHelper::get_week(Time.now)
   field :scoring,           type: String 
   field :note,              type: String
