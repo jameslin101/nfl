@@ -10,8 +10,6 @@ class User
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
-  accepts_nested_attributes_for :profile
-
   has_many :polls
 
   field :provider,    :type => String
