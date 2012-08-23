@@ -1,0 +1,4 @@
+-if poll.voted?(current_user)
+  =render "polls/poll_results", :poll => poll
+-else poll.can_vote?(current_user)
+  =render "polls/poll_vote", :poll => poll

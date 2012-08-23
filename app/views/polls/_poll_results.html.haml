@@ -2,26 +2,23 @@
   .row{:id => "#{poll._id}"}
     .pane
       .span5
-        %h2.poll-header
-          =poll.question
-        %h3.askedby
-          =current_user.first_name
+        %h2=poll.question
         <br>
-        %h4.poll-subheader
+        %h4#poll-subheader
           Week
           =poll.week
           \:
           =poll.subtitle
           %p
-          Scoring:
-          =poll.scoring
-          %p
         %table.table
           %colgroup
+            %col.span1
             %col.span1
             %col.span3
           - poll.poll_options.each do |poll_option|
             %tr
+              %td
+                = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
               %td
                 -if poll_option.can_vote?(current_user)
                   =link_to "Vote", poll_option_vote_up_path(poll_option), :remote => true, 
@@ -32,13 +29,9 @@
                                      :class =>"btn btn-warning", :id => poll_option._id
               %td
                 =poll_option.name
-        %h4
-          Choose:
-          =poll.user_votes_left(current_user)
-          more
       .span3
         %h4#poll-subheader
-          %p
+          <br>
           Notes:
           %p
           =poll.note

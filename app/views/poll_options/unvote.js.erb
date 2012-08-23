@@ -1,2 +1,2 @@
-$('#<%=@poll_option.poll._id%>').html("<%= escape_javascript(render "poll_vote", :poll => @poll_option.poll)
+$('#<%=@poll_option.poll._id%>').html("<%= escape_javascript(render "polls/view_poll", :poll => @poll_option.poll)
 %>")

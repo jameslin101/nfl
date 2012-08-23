@@ -1,0 +1,136 @@
+/*
+Author:  	Leonard Li
+URL:		FanCensus.com
+Version: 	v1
+
+FFC900 - base
+
+A68200 - brown
+FFC900 - lighter orange
+FF9E00 - darker orange
+FFF200 - yellow
+
+@font-face {
+  font-family: 'Junction';
+  src: 
+  url('../fonts/junction/Junction-webfont.eot?') format('eot'), 
+  url('../fonts/junction/Junction-webfont.woff') format('woff'), 
+  url('../fonts/junction/Junction-webfont.ttf') format('truetype'),
+  url('../fonts/junction/Junction-webfont.svg') format('svg');
+}
+
+*/
+
+
+body {
+	font-size: 12px;
+	color: #5C3317;
+	font-family: 'Anonymous Pro', "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+	.fan {
+		color: #FFC900;
+		font-weight: 550;
+	}
+
+	.sensus {
+	color: #FFF200;
+	font-weight: 490;
+	}
+
+h1 {
+	font-size: 28px;
+	color: #FF9E00;
+	padding: 0 0 10px 0;
+}
+
+h2 {
+	color: #000;
+	display: inline;
+}
+
+h3 {
+	margin: 5px 0;
+	font-size: 14px;
+	line-height: normal;
+}
+	h3 span {
+		font-weight: 100;
+		float: right;
+	}
+
+
+.clear {
+	display:block;
+}
+
+.pollbtn {
+	margin: 0;
+	padding: 3px 15px;
+}
+
+.spacing {
+	display: block;	
+	margin: 20px 0px;
+}
+
+.textbold {
+	font-weight: 700;
+}
+
+.floatleft{
+	float:left;
+}
+
+.floatright{
+	float:right;
+}
+
+.leftpad {
+	margin: 0 0 0 10px;
+}
+
+table {
+	font-size: 16px;
+
+}
+
+.pane {
+	display: block;
+	float: left;
+	overflow: hidden;
+
+	width: 90%;
+	padding: 10px 20px 20px 20px;		
+	margin: 15px 0 0 0;
+
+	font-size: 14px;
+	border: 1px solid orange;
+	background: lightyellow;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+}
+	.pane h4 {
+		float: left;
+	}
+
+	.pane .askedby {
+		font-size: 14px;
+		float: right;
+		margin-top:7px;
+	}
+
+
+.control-label {
+	float: left;
+	width: 140px;
+	padding: 5px;
+	text-align: right;
+}
+
+@media only screen and (max-width:420px) {
+	pane {
+	}
+}
+

@@ -12,6 +12,9 @@
       = f.label :question, "Question"
       = f.collection_select :question, Poll::QUESTION_TYPES, :to_s, :to_s
       %p
+      = f.label :subtitle, "Subtitle"
+      = f.text_field :subtitle
+      %p
       = f.label :week, "Week \#"
       = f.collection_select :week, 1..17, :to_i, :to_i
       %p

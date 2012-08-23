@@ -25,6 +25,14 @@ class Poll
   field :max_vote_options,  type: Integer, default: 1
   #field :user_votes,        type: Hash, default: {}
   
+  def total_votes
+    v = 0
+    self.poll_options.each do |poll_option|
+      v += poll_option.users.count
+    end
+    return v
+  end
+    
   def user_total_votes(user)
     v = 0
     self.poll_options.each do |poll_option|
@@ -40,43 +48,10 @@ class Poll
   def can_vote?(user)
     self.max_vote_options - self.user_total_votes(user) > 0
   end  
-  # def add_vote(user)
-  #   if can_vote?(user)
-  #     if self.user_votes[user.email_clean] 
-  #       v = self.user_votes[user.email_clean]
-  #     else
-  #       v = 0
-  #       self.votes += 1
-  #     end 
-  #     self.user_votes.store(user.email_clean, v+1)
-  #     save
-  #   else
-  #     return false
-  #   end
-  # end
-  # 
-  # def unvote(user)
-  #   v = self.user_votes[user.email_clean]
-  #   self.user_votes.store(user.email_clean, v-1)
-  #   save
-  # end
   
-  # def can_vote?(user)
-  #   if v = self.user_votes[user.email_clean]
-  #     return v < self.max_vote_options
-  #   else
-  #     true
-  #   end
-  # end
-  
-  # def get_user_votes(user)
-  #   if v = self.user_votes[user.email_clean]
-  #     return v
-  #   else
-  #     return 0
-  #   end
-  # end
-  
+  def voted?(user)
+    self.user_votes_left(user) == 0
+  end
 
   
   private
