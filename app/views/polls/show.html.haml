@@ -2,41 +2,7 @@
   Please 
   = link_to "log in", new_user_session_path
   to vote or answer the question.<br/>
--else
-  -votes_left = @poll.max_vote_options - @poll.get_user_votes(current_user)
-  .row
-    .span3
-      %h3
-        =@poll.question 
-      Week:
-      =@poll.week
-      %p
-      Scoring:
-      =@poll.scoring
-      %p
-      Notes:
-      %p
-      =@poll.note
-      
-    .span3
-      <br><br>
-      Choose:
-      =votes_left
-      more
-      <br><br>
-      %table.table.table-bordered.table-striped
-        - @poll.poll_options.each do |poll_option|
-          %tr
-            %td
-              -if poll_option.can_vote?(current_user)
-                =link_to "Vote", poll_option_vote_up_path(poll_option), :class => "btn"
-              -else
-                -if poll_option.voted?(current_user)
-                  =link_to "unvote", poll_option_unvote_path(poll_option), :class=> "btn"
-            %td
-              =poll_option.name
-      <br>
-      -if votes_left = 0 then
-        =link_to "Thanks for voting! Return to main menu.", polls_path, :class => "btn"
+  = render "poll_vote"
+
       
 = link_to 'Back', polls_path            

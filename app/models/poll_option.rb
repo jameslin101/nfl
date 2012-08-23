@@ -16,7 +16,9 @@ class PollOption
       self.vote_count += 1
       self.voters << user.email_clean
       save
+      return true
     end
+    return false
   end
   
   def unvote(user)
@@ -25,7 +27,9 @@ class PollOption
       self.vote_count -= 1
       self.voters.delete(user.email_clean)
       save
+      return true
     end
+    return false
   end
   
   def voted?(user)
@@ -35,4 +39,6 @@ class PollOption
   def can_vote?(user)
     return !voted?(user) && self.poll.can_vote?(user)
   end
+  
+
 end

@@ -62,6 +62,10 @@ class Poll
     end
   end
   
+  def votes_left(user)
+    self.max_vote_options - self.get_user_votes(user)
+  end
+  
   private
     def require_two_players
       if self.poll_options.reject(&:marked_for_destruction?).length < 2

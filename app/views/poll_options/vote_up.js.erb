@@ -1,0 +1,3 @@
+$('#<%=@poll_option._id%>').html("Unvote");
+$('#<%=@poll_option._id%>').attr("href", "<%=poll_option_vote_up_path(@poll_option)%>");
+alert(<%=@can_vote%>);
