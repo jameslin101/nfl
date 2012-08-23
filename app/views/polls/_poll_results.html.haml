@@ -2,7 +2,10 @@
   .row{:id => "#{poll._id}"}
     .pane
       .span5
-        %h2=poll.question
+        %h2.poll-header
+          =poll.question
+        %h3.askedby
+          =poll.user.first_name
         <br>
         %h4#poll-subheader
           Week
