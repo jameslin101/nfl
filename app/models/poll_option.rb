@@ -30,7 +30,7 @@ class PollOption
   end
   
   def voted?(user)
-    self.users.include?(user)
+    self.users.include?(user) if user
   end
     
   def can_vote?(user)
