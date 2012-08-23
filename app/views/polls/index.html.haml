@@ -3,7 +3,7 @@
 
 %ul
   -@polls.each do |poll|
-    =render "poll_vote", :poll => poll
+    =render "poll_options/poll_vote", :poll => poll
     =#link_to poll.question + " by " + poll.user.email, poll_path(poll)
       
 =link_to 'New Poll', new_poll_path

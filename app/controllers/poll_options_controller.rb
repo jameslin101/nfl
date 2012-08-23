@@ -11,10 +11,10 @@ class PollOptionsController < ApplicationController
     
     @poll_option = PollOption.find(params[:poll_option_id])
     
-    if @poll_option.vote_up(current_user)  
-      @can_vote = @poll_option.can_vote?(current_user)  
+    if @poll_option.vote_up(current_user) 
+      @can_vote = @poll_option.can_vote?(current_user)
       respond_to do |format|
-        format.html { redirect_to poll_path(@poll_option.poll), :notice => "Your vote is successfully submitted" }
+        format.html { redirect_to :back, :notice => "Your vote is successfully submitted" }
         format.js
       end
     end
@@ -26,7 +26,7 @@ class PollOptionsController < ApplicationController
     if @poll_option.unvote(current_user)
       @can_vote = @poll_option.can_vote?(current_user)
       respond_to do |format|
-        format.html { redirect_to poll_path(@poll_option.poll), :notice => "Your unvote is successfully submitted."}
+        format.html { redirect_to :back, :notice => "Your unvote is successfully submitted."}
         format.js
       end
     end

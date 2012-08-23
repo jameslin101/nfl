@@ -7,14 +7,13 @@ class PollOption
   
   #has_one :nfl_player
   field :name, type: String
-  field :vote_count, type: Integer, default: 0
-  field :voters, type: Array, default: []
-  
+  #field :vote_count, type: Integer, default: 0
+  #field :voters, type: Array, default: []
+  has_and_belongs_to_many :users
   
   def vote_up(user)
-    if !voted?(user) && self.poll.add_vote(user)
-      self.vote_count += 1
-      self.voters << user.email_clean
+    if !voted?(user) && self.poll.can_vote?(user)
+      self.users.push(user)
       save
       return true
     end
@@ -22,10 +21,8 @@ class PollOption
   end
   
   def unvote(user)
-    self.poll.unvote(user)
     if voted?(user)
-      self.vote_count -= 1
-      self.voters.delete(user.email_clean)
+      self.users.delete(user)
       save
       return true
     end
@@ -33,9 +30,9 @@ class PollOption
   end
   
   def voted?(user)
-    return self.voters.include?(user.email_clean) 
+    self.users.include?(user)
   end
-  
+    
   def can_vote?(user)
     return !voted?(user) && self.poll.can_vote?(user)
   end

@@ -1,3 +1,2 @@
-$('#<%=@poll_option._id%>').html("Unvote");
-$('#<%=@poll_option._id%>').attr("href", "<%=poll_option_vote_up_path(@poll_option)%>");
-alert(<%=@can_vote%>);
+$('#<%=@poll_option.poll._id%>').html("<%= escape_javascript(render "poll_vote", :poll => @poll_option.poll)
+%>")

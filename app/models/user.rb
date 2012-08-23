@@ -11,6 +11,7 @@ class User
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
   has_many :polls
+  has_and_belongs_to_many :poll_options
 
   field :provider,    :type => String
   field :uid,         :type => String
