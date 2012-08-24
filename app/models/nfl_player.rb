@@ -1,6 +1,7 @@
 class NflPlayer
   include Mongoid::Document
   embeds_many :stats
+  belongs_to :poll_option
 
   field :yahoo_id,  type: String 
   field :name,      type: String

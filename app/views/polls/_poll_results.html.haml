@@ -45,6 +45,7 @@
                       =link_to "Unvote",poll_option_unvote_path(poll_option), :remote => true, 
                                        :class =>"btn btn-warning btn-large", :id => poll_option._id
                 %td
+                  =poll_option.nfl_player.inspect
                   =poll_option.name
                 %td{:overflow => "hidden"}
                   =render "poll_options/display_stats", :poll_option => poll_option
