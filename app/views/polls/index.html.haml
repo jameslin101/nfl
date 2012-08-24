@@ -3,8 +3,11 @@
 
 =link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
 
-%ul
-  -@polls.each do |poll|
-    =render "view_poll", :poll => poll
+-@polls.each do |poll|
+  =render "view_poll", :poll => poll
+%p
+%br
+%br
+= paginate @polls
       
 .row

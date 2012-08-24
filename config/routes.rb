@@ -4,7 +4,11 @@ Nfl::Application.routes.draw do
                      controllers: {omniauth_callbacks: "omniauth_callbacks"}
                      
   resources :nfl_players
-  resources :polls
+  
+  resources :polls do
+    get 'page/:page', :action => :index, :on => :collection
+  end
+  
   resources :poll_options do
     get :vote_up
     get :unvote
@@ -16,6 +20,7 @@ Nfl::Application.routes.draw do
   match "my_polls" => "polls#my_polls", :as => :my_polls
   match "my_stats" => "polls#my_stats", :as => :my_stats
   match "leaderboard" => "polls#leaderboard", :as => :leaderboard
+
 
 
   # The priority is based upon order of creation:

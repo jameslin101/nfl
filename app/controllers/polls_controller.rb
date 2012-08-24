@@ -2,7 +2,7 @@ class PollsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    @polls = Poll.desc(:created_at)
+    @polls = Poll.desc(:created_at).page(params[:page]).per(3)
   end
 
   def my_polls
