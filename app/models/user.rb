@@ -59,6 +59,11 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
+  def abbr_name
+    if self.first_name && self.last_name
+      return self.first_name + " " + self.last_name[0] + "."
+    end
+  end
   
   def self.from_omniauth(auth)
     user = where(auth.slice(:provider, :uid)).first || where(auth.slice(:provider, :uid)).create

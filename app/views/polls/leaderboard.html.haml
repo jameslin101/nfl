@@ -1,12 +1,20 @@
 %h1 Leaderboard
--@users.each_with_index do |user, index|
-  .row
-    %h3
-      =index+1
-      - if user.image
-        =image_tag(user.image)
-      - else
-        =image_tag("image_missing.gif", :size => "50x50")
-      =user.points
-      Points
-    %p
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th.center Rank
+      %th.center Member
+      %th.center Points
+  -@users.each_with_index do |user, index|
+    %tr
+      %h3
+        %td.center.mid
+          =index+1
+        %td.mid
+          - if user.image
+            =image_tag(user.image)
+          - else
+            =image_tag("image_missing.gif", :size => "50x50")
+          =user.abbr_name
+        %td.center.mid
+          =user.points
