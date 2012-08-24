@@ -2,11 +2,16 @@ class PollsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   
   def index
-    @polls = Poll.all
+    @polls = Poll.desc(:created_at)
   end
 
   def my_polls
-    @polls = Poll.where(:user => current_user)
+    @polls = Poll.where(:user => current_user).desc(:created_at)
+  end
+  
+  def my_stats
+    poll_options = current_user.poll_options
+    @polls = poll_options.map{|i| i.poll}
   end
 
   def show
@@ -39,7 +44,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
 
     if @poll.update_attributes(params[:poll])
-      redirect_to @poll, notice: 'Poll was successfully created.' 
+      redirect_to polls_path, notice: 'Poll was successfully created.' 
     else
       render action: "edit" 
     end
@@ -49,7 +54,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
     @poll.destroy
 
-    redirect_to polls_url
+    redirect_to polls_path
   end
   
 end

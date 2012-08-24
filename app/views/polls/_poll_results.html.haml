@@ -2,7 +2,7 @@
   .row{:id => "#{poll._id}"}
     .pane
       .row
-        .span5
+        .span4
           %h2.poll-header
             =poll.question
           - if poll.user == current_user
@@ -16,10 +16,12 @@
             \:
             =poll.subtitle
             %p
-        .span4
-          %h4
-            Notes:&nbsp
-            =poll.note  
+        .span5
+          %p
+          -if !poll.note.empty?
+            %h4
+              Notes:&nbsp
+              =poll.note  
         .span2
           %h3.askedby
             =poll.user.first_name
@@ -50,3 +52,8 @@
                   =poll_option.name
                 %td{:overflow => "hidden"}
                   =render "poll_options/display_stats", :poll_option => poll_option
+      .row
+        .pull-right
+          Asked
+          =time_ago_in_words(poll.created_at)
+          ago.

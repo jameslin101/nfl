@@ -13,6 +13,7 @@ class PollOption
   has_and_belongs_to_many :users
   has_one :nfl_player
   
+  
   def vote_up(user)
     if !voted?(user) && self.poll.can_vote?(user)
       self.users.push(user)

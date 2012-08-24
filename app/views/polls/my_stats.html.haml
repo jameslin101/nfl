@@ -3,11 +3,9 @@
   =current_user.points
   Guru Points!
 %p
--poll_options = current_user.poll_options
--polls = poll_options.map{|i| i.poll}
 
 %h2 Your votes:
--polls.each do |poll|
+-@polls.each do |poll|
   %h3
     Week
     =poll.week
