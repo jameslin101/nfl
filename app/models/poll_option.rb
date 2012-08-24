@@ -39,11 +39,14 @@ class PollOption
   end
   
   def nfl_player
-    if self.name
-      k = self.name.split
+    k = self.name.split
+    return nil
+    if k.count == 5
       full_name = k[0] + " " + k[1]
       team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
       NflPlayer.where(name: full_name, team: team)[0]
+    else
+      return nil
     end
   end
 end
