@@ -40,12 +40,17 @@ class PollOption
   
   def nfl_player
     k = self.name.split
-    if k.count == 5
-      full_name = k[0] + " " + k[1]
-      team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
-      NflPlayer.where(name: full_name, team: team)[0]
+    full_name = k[0] + " " + k[1]
+    team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
+    query = NflPlayer.where(name: full_name)
+    if query.count == 1
+      player = query[0]
     else
-      return nil
+      if query.count > 1
+        player = NflPlayer.where(name: full_name, team: team)[0]
+      else
+        return nil
+      end
     end
   end
 end
