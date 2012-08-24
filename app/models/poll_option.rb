@@ -39,9 +39,11 @@ class PollOption
   end
   
   def nfl_player
-    k = self.name.split
-    full_name = k[0].to_s + " " + k[1].to_s
-    team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
-    NflPlayer.where(name: full_name, team: team)[0]
+    if self.name
+      k = self.name.split
+      full_name = k[0] + " " + k[1]
+      team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
+      NflPlayer.where(name: full_name, team: team)[0]
+    end
   end
 end
