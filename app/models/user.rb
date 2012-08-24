@@ -13,10 +13,16 @@ class User
   has_many :polls
   has_and_belongs_to_many :poll_options
 
-  field :provider,    :type => String
-  field :uid,         :type => String
-  field :first_name,  :type => String
-  field :last_name,   :type => String
+  field :provider,          :type => String
+  field :uid,               :type => String
+  field :first_name,        :type => String
+  field :last_name,         :type => String
+  field :oauth_token,       :type => String
+  field :oauth_expires_at,  :type => Time 
+  field :image,             :type => String
+  field :urls,              :type => Hash
+  field :location,          :type => String
+  field :verified,          :type => Boolean
   
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -52,10 +58,7 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-  
-  def email_clean   
-    self.email.sub(".","*")
-  end
+
   
   def self.from_omniauth(auth)
     user = where(auth.slice(:provider, :uid)).first || where(auth.slice(:provider, :uid)).create
@@ -64,7 +67,13 @@ class User
     user.email = auth.info.email
     user.first_name = auth.info.first_name
     user.last_name = auth.info.last_name
-    user.save
+    user.oauth_token = auth.credentials.token
+    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    user.image = auth.info.image   
+    user.urls = auth.info.urls    
+    user.location = auth.info.url
+    user.verified = auth.info.verified
+    user.save!
     user
   end
   
@@ -99,4 +108,9 @@ class User
     end
     points
   end
+  
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
+  
 end

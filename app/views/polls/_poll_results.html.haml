@@ -24,6 +24,9 @@
               =poll.note  
         .span2
           %h3.askedby
+            -if poll.user.image
+              =image_tag(poll.user.image)
+            <br>
             =poll.user.first_name
       .row
         .span11
@@ -36,7 +39,7 @@
             - poll.poll_options.each do |poll_option|
               %tr
                 %td
-                  - if poll_option.poll.total_votes != 0 && poll_option.voted?(current_user)
+                  - if poll_option.poll.total_votes != 0 && poll_option.poll.voted?(current_user)
                     = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
                 %td
                     

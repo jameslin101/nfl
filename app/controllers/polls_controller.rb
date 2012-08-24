@@ -26,6 +26,7 @@ class PollsController < ApplicationController
 
   def edit
     @poll = Poll.find(params[:id])
+    (5 - @poll.poll_options.count).times {@poll.poll_options.build}
     
   end
 
