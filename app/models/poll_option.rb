@@ -44,10 +44,10 @@ class PollOption
     team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
     query = NflPlayer.where(name: full_name)
     if query.count == 1
-      player = query[0]
+      return query[0]
     else
       if query.count > 1
-        player = NflPlayer.where(name: full_name, team: team)[0]
+        return NflPlayer.where(name: full_name, team: team)[0]
       else
         return nil
       end
