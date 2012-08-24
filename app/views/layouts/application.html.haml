@@ -22,6 +22,7 @@
           %ul.nav
             %li= link_to "My Polls", my_polls_path
             %li= link_to "My Stats", my_stats_path
+            %li= link_to "Leaderboard", leaderboard_path
           %ul.nav.pull-right
             - if user_signed_in?
               %li.dropdown

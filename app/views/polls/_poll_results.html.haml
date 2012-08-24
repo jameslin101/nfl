@@ -9,6 +9,16 @@
             = link_to '<i class="icon-pencil">Edit</i>'.html_safe, edit_poll_path(poll), class:"edit_poll"
             =button_to "Delete", poll, {:method => :delete, :confirm => "Are you sure?",
                        :class => "btn btn-danger btn-mini"}
+          %h3
+            - if poll.user_votes_left(current_user) > 0            
+              Choose
+              =poll.user_votes_left(current_user)
+              more.
+            - else
+              Thanks for voting! Results from
+              =poll.total_votes
+              votes:
+              
           <br>
           %h4#poll-subheader
             Week

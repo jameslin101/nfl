@@ -13,6 +13,10 @@ class PollsController < ApplicationController
     poll_options = current_user.poll_options
     @polls = poll_options.map{|i| i.poll}
   end
+  
+  def leaderboard
+    @users = User.desc(:points)
+  end
 
   def show
     @poll = Poll.find(params[:id])

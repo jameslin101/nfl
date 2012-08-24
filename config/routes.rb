@@ -15,6 +15,7 @@ Nfl::Application.routes.draw do
   match "player_names" => "nfl_players#player_names", :as => :player_names
   match "my_polls" => "polls#my_polls", :as => :my_polls
   match "my_stats" => "polls#my_stats", :as => :my_stats
+  match "leaderboard" => "polls#leaderboard", :as => :leaderboard
 
 
   # The priority is based upon order of creation:
