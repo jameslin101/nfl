@@ -57,4 +57,5 @@ class QbStat < Stat
     :fumbles,               
     :fumbles_lost]
   end
+  
 end  

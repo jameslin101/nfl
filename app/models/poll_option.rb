@@ -7,6 +7,7 @@ class PollOption
   
   #has_one :nfl_player
   field :name, type: String
+  field :points, type: Integer, default: 0
   #field :vote_count, type: Integer, default: 0
   #field :voters, type: Array, default: []
   has_and_belongs_to_many :users
@@ -37,5 +38,10 @@ class PollOption
     return !voted?(user) && self.poll.can_vote?(user)
   end
   
-
+  def nfl_player
+    k = self.name.split
+    full_name = k[0] + " " + k[1]
+    team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
+    NflPlayer.where(name: full_name, team: team)[0]
+  end
 end

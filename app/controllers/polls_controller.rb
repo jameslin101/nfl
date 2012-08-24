@@ -5,6 +5,10 @@ class PollsController < ApplicationController
     @polls = Poll.all
   end
 
+  def my_polls
+    @polls = Poll.where(:user => current_user)
+  end
+
   def show
     @poll = Poll.find(params[:id])
 

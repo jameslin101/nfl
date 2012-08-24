@@ -1,102 +1,70 @@
 module NflPlayersHelper
   
+  POS_HASH = {"Quarterback" => "QB",
+              "Running Back" => "RB",
+              "Wide Receiver" => "WR",
+              "Tight End" => "TE",
+              "Kicker" => "K",
+              "Defensive End" => "DL",
+              "Defensive Tackle" => "DL",
+              "Nose Tackle" => "DL",
+              "Cornerback" => "CB",
+              "Linebacker" => "LB",
+              "Safety" => "S"}
+  
+  TEAM_HASH = { "Arizona Cardinals" => "Ari",
+                "Atlanta Falcons" => "Atl",
+                "Baltimore Ravens" => "Bal",
+                "Buffalo Bills" => "Buf",
+                "Carolina Panthers" => "Car",
+                "Chicago Bears" =>  "Chi",
+                "Cincinnati Bengals" => "Cin",
+                "Cleveland Browns" =>  "Cle",
+                "Dallas Cowboys" => "Dal",
+                "Denver Broncos" => "Den",
+                "Detroit Lions" => "Det",
+                "Green Bay Packers" => "GB",
+                "Houston Texans" => "Hou",
+                "Indianapolis Colts" => "Ind",
+                "Jacksonville Jaguars" => "Jac",
+                "Kansas City Chiefs" => "KC",
+                "Miami Dolphins" => "Mia",
+                "Minnesota Vikings" => "Min",
+                "New England Patriots" => "NE",
+                "New Orleans Saints" => "NO",
+                "New York Giants" => "NYG",
+                "New York Jets" => "NYJ",
+                "Oakland Raiders" => "Oak",
+                "Philadelphia Eagles" => "Phi",
+                "Pittsburgh Steelers" => "Pit",
+                "San Diego Chargers" => "SD",
+                "San Francisco 49ers" => "SF",
+                "Seattle Seahawks" => "Sea",
+                "St. Louis Rams" => "StL",
+                "Tampa Bay Buccaneers" => "TB",
+                "Tennessee Titans" => "Ten",
+                "Washington Redskins" => "Was"}            
+              
+  
   def NflPlayersHelper::position_abbr(pos)
-    case (pos)
-    when "Quarterback"
-      return "QB"
-    when "Running Back"
-      return "RB"
-    when "Wide Receiver"
-      return "WR"
-    when "Tight End"
-      return "TE"
-    when "Kicker"
-      return "K"
-    when "Defensive End"
-      return "DL"
-    when "Defensive Tackle"    
-      return "DL"
-    when "Nose Tackle"    
-      return "DL"
-    when "Cornerback"
-      return "CB"
-    when "Linebacker"
-      return "LB"
-    when "Safety"
-      return "S"
+
+    if POS_HASH[pos]
+      POS_HASH[pos]
     else
-      return "No Position Error"
+     "No Position Error"
     end
   end
-  
+    
   def NflPlayersHelper::team_abbr(team)
-    case(team)
-    when "Arizona Cardinals"
-      return "Ari"
-    when "Atlanta Falcons"
-      return "Atl"
-    when "Baltimore Ravens"
-      return "Bal"
-    when "Buffalo Bills"
-      return "Buf"
-    when "Carolina Panthers"
-      return "Car"
-    when "Chicago Bears"
-      return "Chi"
-    when "Cincinnati Bengals"
-      return "Cin"
-    when "Cleveland Browns"
-      return "Cle"
-    when "Dallas Cowboys"
-      return "Dal"
-    when "Denver Broncos"
-      return "Den"
-    when "Detroit Lions"
-      return "Det"
-    when "Green Bay Packers"
-      return "GB"
-    when "Houston Texans"
-      return "Hou"
-    when "Indianapolis Colts"
-      return "Ind"
-    when "Jacksonville Jaguars"
-      return "Jac"
-    when "Kansas City Chiefs"
-      return "KC"
-    when "Miami Dolphins"
-      return "Mia"
-    when "Minnesota Vikings"
-      return "Min"
-    when "New England Patriots"
-      return "NE"
-    when "New Orleans Saints"
-      return "NO"
-    when "New York Giants"
-      return "NYG"
-    when "New York Jets"
-      return "NYJ"
-    when "Oakland Raiders"
-      return "Oak"
-    when "Philadelphia Eagles"
-      return "Phi"
-    when "Pittsburgh Steelers"
-      return "Pit"
-    when "San Diego Chargers"
-      return "SD"
-    when "San Francisco 49ers"
-      return "SF"
-    when "Seattle Seahawks"
-      return "Sea"
-    when "St. Louis Rams"
-      return "StL"
-    when "Tampa Bay Buccaneers"
-      return "TB"
-    when "Tennessee Titans"
-      return "Ten"
-    when "Washington Redskins"
-      return "Was"
-    else
-      return "No Team Error"
+     
+    if TEAM_HASH[team]
+      TEAM_HASH[team]
+    else 
+      if TEAM_HASH.invert[team]
+        TEAM_HASH.invert[team]      
+      else
+        "No Team Error"
+      end
     end
   end
 end

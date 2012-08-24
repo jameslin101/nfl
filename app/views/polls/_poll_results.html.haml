@@ -1,40 +1,49 @@
 .span12
   .row{:id => "#{poll._id}"}
     .pane
-      .span5
-        %h2.poll-header
-          =poll.question
-        %h3.askedby
-          =poll.user.first_name
-        <br>
-        %h4#poll-subheader
-          Week
-          =poll.week
-          \:
-          =poll.subtitle
-          %p
-        %table.table
-          %colgroup
-            %col.span1
-            %col.span1
-            %col.span3
-          - poll.poll_options.each do |poll_option|
-            %tr
-              %td
-                = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
-              %td
-                -if poll_option.can_vote?(current_user)
-                  =link_to "Vote", poll_option_vote_up_path(poll_option), :remote => true, 
-                                   :class =>"btn btn-primary", :id => poll_option._id
-                -else
-                  -if poll_option.voted?(current_user)
-                    =link_to "Unvote",poll_option_unvote_path(poll_option), :remote => true, 
-                                     :class =>"btn btn-warning", :id => poll_option._id
-              %td
-                =poll_option.name
-      .span3
-        %h4#poll-subheader
+      .row
+        .span5
+          %h2.poll-header
+            =poll.question
+          - if poll.user == current_user
+            = link_to '<i class="icon-pencil">Edit</i>'.html_safe, edit_poll_path(poll), class:"edit_poll"
+            =button_to "Delete", poll, {:method => :delete, :confirm => "Are you sure?",
+                       :class => "btn btn-danger btn-mini"}
           <br>
-          Notes:
-          %p
-          =poll.note
+          %h4#poll-subheader
+            Week
+            =poll.week
+            \:
+            =poll.subtitle
+            %p
+        .span6
+          %h4
+            Notes:&nbsp
+            =poll.note  
+          %h3.askedby
+            =poll.user.first_name
+      .row
+        .span11
+          %table.table{:style => "table-layout:fixed"}
+            %colgroup
+              %col.span1
+              %col.span2
+              %col.span3
+              %col.span7
+            - poll.poll_options.each do |poll_option|
+              %tr
+                %td
+                  - if poll_option.poll.total_votes != 0 
+                    = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
+                %td
+                  -if poll_option.can_vote?(current_user)
+                    =link_to "Vote", poll_option_vote_up_path(poll_option), :remote => true, 
+                                     :class =>"btn btn-primary btn-large", :id => poll_option._id
+                  -else
+                    -if poll_option.voted?(current_user)
+                      =link_to "Unvote",poll_option_unvote_path(poll_option), :remote => true, 
+                                       :class =>"btn btn-warning btn-large", :id => poll_option._id
+                %td
+                  =poll_option.name
+                %td{:overflow => "hidden"}
+                  =render "poll_options/display_stats", :poll_option => poll_option

@@ -91,4 +91,12 @@ class User
       super
     end
   end
+  
+  def points
+    points = 0
+    self.poll_options.each do |p|
+      points += p.points
+    end
+    points
+  end
 end
