@@ -1,0 +1,24 @@
+.span4
+  .well
+    -if poll
+      %h2 Result from last poll:
+      %table.table{:style => "table-layout:fixed"}
+        %colgroup
+          %col.span3
+          %col.span1
+        %tbody
+          - poll.poll_options.each_with_index do |poll_option, index|
+            - letter = index.to_s(27).tr("0-9a-q", "A-Z")
+            %tr
+              %td
+                -if poll_option.nfl_player.nil? 
+                  -poll_option.nfl_player = poll_option.set_nfl_player
+                =poll_option.name
+              %td
+                - if poll_option.poll.total_votes != 0 && poll_option.poll.voted?(current_user)
+                  = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
+      %h3 
+        Out of
+        =poll.total_votes
+        votes.
+      =link_to poll_url(poll) 

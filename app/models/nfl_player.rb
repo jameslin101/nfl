@@ -25,9 +25,9 @@ class NflPlayer
   def name_team_pos
     self.name +
     " (" +
-    NflPlayersHelper::team_abbr(self.team) + 
+    self.team + 
     " - " +
-    NflPlayersHelper::position_abbr(self.position) + 
+    self.position + 
     ")"
   end
 end

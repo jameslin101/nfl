@@ -3,9 +3,6 @@
     .well
       .row
         .span4
-          = params
-          <br>
-          = session[:last_poll]
           %h2.poll-header
             =poll.question
           - if poll.user == current_user
@@ -91,6 +88,3 @@
           ago.
 
           
-/ %td
-/   - if poll_option.poll.total_votes != 0 && poll_option.poll.voted?(current_user)
-/     = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
