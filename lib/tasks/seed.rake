@@ -106,9 +106,11 @@ def wait(i)
   sleep 5 if i % 2 == 0
 end
 
-def parse_football_player_list(player_type, url, week, year = Time.now.year)
+def parse_football_player_list(player_type, url, week, year)
+  year = 2011
   agent = Mechanize.new
   rank_count = 0
+
   200.times do |n|
     count = 0
     url_with_count = url.gsub("###","#{n*25}")

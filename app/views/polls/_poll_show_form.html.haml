@@ -70,7 +70,8 @@
                     -poll_option.nfl_player = poll_option.set_nfl_player
                   =poll_option.name
                 %td
-                  Team
+                  -if !poll_option.nfl_player.nil? 
+                    =poll_option.nfl_player.opp
                 %td
                   Game Time
       .row
