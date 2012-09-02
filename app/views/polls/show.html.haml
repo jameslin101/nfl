@@ -1,8 +1,0 @@
--if @poll
-  = render "polls/poll_show_form", {:poll => @poll, :show_next => true}
--else
-  %h1 No polls found. <br>
-
-.row
-  .span12
-    = link_to 'Back', polls_path            
