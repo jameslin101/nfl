@@ -44,6 +44,10 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
+    if params[:poll_options_attributes]
+      raise puts params[:poll_option_attributes].to_a.flatten.count({"name"=>""}).inspect
+      params[:poll_options_attributes].to_a.flatten.count({"name"=>""}).times {@poll.poll_options.build}
+    end
     5.times {@poll.poll_options.build}
   end
 
@@ -56,6 +60,10 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(params[:poll])
     @poll.user_id = current_user.id
+    if params[:poll_options_attributes]
+      raise puts params[:poll_option_attributes].to_a.flatten.count({"name"=>""}).inspect
+      params[:poll_options_attributes].to_a.flatten.count({"name"=>""}).times {@poll.poll_options.build}
+    end
 
     if @poll.save
       redirect_to polls_path, notice: 'Poll was successfully created.' 

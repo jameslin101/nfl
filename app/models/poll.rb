@@ -61,8 +61,8 @@ class Poll
       if self.poll_options.length < 2
         errors[:valid_poll]= "You must provide at least 2 players."
       end
-      if self.poll_options.length >= self.max_vote_options
-        errors[:valid_poll]= "You must have less choices #{self.poll_options.length} than possible options."
+      if self.poll_options.length <= self.max_vote_options
+        errors[:valid_poll]= "You must have less choices (#{self.poll_options.length}) than possible options (#{max_vote_options})."
       end
     end
 
