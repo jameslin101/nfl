@@ -1,0 +1,10 @@
+-if @poll
+  = render "polls/poll_show_form", {:poll => @poll}
+  -if @last_poll
+    = render "polls/results", {:poll => @last_poll}
+-else
+  %h1 No polls found. <br>
+
+.row
+  .span12
+    = link_to 'Back', polls_path            

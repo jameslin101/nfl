@@ -3,6 +3,9 @@
     .well
       .row
         .span4
+          = params
+          <br>
+          = session[:last_poll]
           %h2.poll-header
             =poll.question
           - if poll.user == current_user
@@ -33,9 +36,7 @@
                 more.
               - else
                 Thanks for voting!
-                =render root_path
-
-
+  
       .row
         .span6
           %table.table{:style => "table-layout:fixed"}
