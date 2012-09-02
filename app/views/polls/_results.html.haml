@@ -1,29 +1,30 @@
-.span4
-  .well
-    -if poll
-      %h3 
-        -if poll.user.display_name
-          =poll.user.display_name
-          asked:
-        =poll.question
-      %table.table
-        %colgroup
-          %col.span2
-          %col.span1
-        %tbody
-          - poll.poll_options.each_with_index do |poll_option, index|
-            - letter = index.to_s(27).tr("0-9a-q", "A-Z")
-            %tr
-              %td{:overflow => "hidden"}
-                -if poll_option.nfl_player.nil? 
-                  -poll_option.nfl_player = poll_option.set_nfl_player
-                =poll_option.name
-              %td
-                - if poll_option.poll.total_votes != 0 && poll_option.poll.voted?(current_user)
-                  = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
-      %h3 
-        Out of
-        =poll.total_votes
-        votes.
-      
-      =link_to poll_url(poll), poll_path(poll)
+.well.span4
+  -if poll
+    %h3 
+      -if poll.user.display_name
+        =poll.user.display_name
+        asked:
+      =poll.question
+    %table.table
+      %colgroup
+        %col.span2
+        %col.span1
+      %tbody
+        - poll.poll_options.each_with_index do |poll_option, index|
+          - letter = index.to_s(27).tr("0-9a-q", "A-Z")
+          %tr
+            %td{:overflow => "hidden"}
+              -if poll_option.nfl_player.nil? 
+                -poll_option.nfl_player = poll_option.set_nfl_player
+              =poll_option.name
+            %td
+              - if poll_option.poll.total_votes != 0 && poll_option.poll.voted?(current_user)
+                = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
+              - if poll_option.voted?(current_user)
+                %i.icon-ok
+    %h3 
+      Out of
+      =poll.total_votes
+      votes.
+    
+    =link_to poll_url(poll), poll_path(poll)

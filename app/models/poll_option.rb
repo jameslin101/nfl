@@ -8,6 +8,8 @@ class PollOption
   
   field :name, type: String
   field :points, type: Integer, default: 0
+  field :points_right, type: Integer, default: 0
+  field :points_wrong, type: Integer, default: 0
   #field :vote_count, type: Integer, default: 0
   #field :voters, type: Array, default: []
   has_and_belongs_to_many :users
@@ -40,19 +42,21 @@ class PollOption
     return !voted?(user) && self.poll.can_vote?(user)
   end
   
-  def set_nfl_player    
-    k = self.name.split
-    query = Array.new
-    if k.count > 2
-      full_name = k[0] + " " + k[1]
-      query = NflPlayer.where(name: full_name)
-    end
-    if query.count == 1
-      return self.nfl_player = query[0]
-    else
-      if query.count > 1
-        team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
-        return self.nfl_player = NflPlayer.where(name: full_name, team: team)[0]
+  def set_nfl_player
+    if !self.name.nil?    
+      k = self.name.split
+      query = Array.new
+      if k.count > 2
+        full_name = k[0] + " " + k[1]
+        query = NflPlayer.where(name: full_name)
+      end
+      if query.count == 1
+        return self.nfl_player = query[0]
+      else
+        if query.count > 1
+          team = NflPlayersHelper::team_abbr(k[2].sub("(",""))
+          return self.nfl_player = NflPlayer.where(name: full_name, team: team)[0]
+        end
       end
     end
   end

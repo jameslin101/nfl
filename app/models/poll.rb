@@ -6,7 +6,7 @@ class Poll
   has_many :poll_options, :dependent => :destroy
   accepts_nested_attributes_for :poll_options, :allow_destroy => true, :reject_if => :all_blank
   attr_accessible :poll_options_attributes, :question, :week, :scoring, :note, :votes, :max_vote_options, :user_votes, :user, :subtitle
-  #validate :require_two_players
+  validate :valid_poll
   validates :note, :length => {:maximum => 240}
   
   scope :week, ->(week){ where(week: week)}
@@ -57,9 +57,12 @@ class Poll
 
   
   private
-    def require_two_players
-      if self.poll_options.reject(&:marked_for_destruction?).length < 2
-        errors[:two_players]= "You must provide at least 2 players."
+    def valid_poll
+      if self.poll_options.length < 2
+        errors[:valid_poll]= "You must provide at least 2 players."
+      end
+      if self.poll_options.length >= self.max_vote_options
+        errors[:valid_poll]= "You must have less choices #{self.poll_options.length} than possible options."
       end
     end
 

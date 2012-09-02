@@ -17,6 +17,13 @@ th.center, td.center {
   color: red;
 }
 
+
+.control-label {
+	float: left;
+	width: 140px;
+	padding: 5px;
+	text-align: right;
+}
 .navbar-inner2 {
   -webkit-border-image: none;
   -webkit-box-shadow: rgba(0, 0, 0, 0.0625) 0px 1px 4px 0px;

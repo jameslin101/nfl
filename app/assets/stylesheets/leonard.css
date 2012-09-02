@@ -5,10 +5,17 @@ Version: 	v1
 
 FFC900 - base
 
+Old:
 A68200 - brown
 FFC900 - lighter orange
 FF9E00 - darker orange
 FFF200 - yellow
+
+Football:
+663300 - Brown
+339900 - Green
+A6A408 - Light Green
+8B4C39 - Another Brown
 
 @font-face {
   font-family: 'Junction';
@@ -18,31 +25,34 @@ FFF200 - yellow
   url('../fonts/junction/Junction-webfont.ttf') format('truetype'),
   url('../fonts/junction/Junction-webfont.svg') format('svg');
 }
-
 */
 
 
+/*** Override Standards  ***/
 body {
-	font-size: 12px;
-	color: #5C3317;
-	font-family: 'Anonymous Pro', "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+	font-size: 0.9em;
+	color: brown;
+	/*background: url(http://us.123rf.com/400wm/400/400/dehooks/dehooks1008/dehooks100800007/7625550-closeup-of-50-yard-line-on-american-football-field.jpg) no-repeat center center fixed; 
+	*/
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
-
-
 	.fan {
-		color: #FFC900;
-		font-weight: 550;
+		font-size: 1em;
+		color: #FFFFFF;
+		font-weight: 750;
 	}
 
 	.sensus {
-	color: #FFF200;
-	font-weight: 490;
+	font-size: 1em;
+	color: #339900;
+	font-weight: 690;
 	}
 
 h1 {
-	font-size: 28px;
-	color: #FF9E00;
+	color: #663300;
 	padding: 0 0 10px 0;
 }
 
@@ -60,7 +70,6 @@ h3 {
 		font-weight: 100;
 		float: right;
 	}
-
 
 .clear {
 	display:block;
@@ -93,7 +102,7 @@ h3 {
 }
 
 table {
-	font-size: 16px;
+	font-size: 1em;
 
 }
 
@@ -101,13 +110,15 @@ table {
 	display: block;
 	float: left;
 	overflow: hidden;
+	color: #5C3317;
 
 	width: 90%;
 	padding: 10px 20px 20px 20px;		
 	margin: 15px 0 0 0;
 
-	font-size: 14px;
-	border: 1px solid orange;
+	font-size: 1em;
+	border: 1px solid #663300;
+	/*border: 1px solid orange;*/
 	background: lightyellow;
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
@@ -124,15 +135,5 @@ table {
 	}
 
 
-.control-label {
-	float: left;
-	width: 140px;
-	padding: 5px;
-	text-align: right;
-}
-
 @media only screen and (max-width:420px) {
-	pane {
-	}
 }
-

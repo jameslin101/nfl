@@ -8,7 +8,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username
 
   has_many :polls
   has_and_belongs_to_many :poll_options
@@ -17,6 +17,7 @@ class User
   field :uid,               :type => String
   field :first_name,        :type => String
   field :last_name,         :type => String
+  field :username,          :type => String
   field :oauth_token,       :type => String
   field :oauth_expires_at,  :type => Time 
   field :image,             :type => String
@@ -66,7 +67,7 @@ class User
   end
 
   def display_name
-    abbr_name || uid
+    username || abbr_name || uid
   end
 
   
