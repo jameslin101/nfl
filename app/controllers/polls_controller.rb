@@ -29,9 +29,10 @@ class PollsController < ApplicationController
 
   def show
     polls = Poll.excludes(:user => current_user).desc(:created_at).to_a
-    while !polls.nil? && !@poll.nil? 
+    poll = polls.pop if !polls.empty?
+    while !polls.empty? && @poll.nil? 
+      @poll = poll if poll && !poll.voted?(current_user)
       poll = polls.pop
-      @poll = poll if poll.voted(current_user)
     end
       
   end
