@@ -14,6 +14,8 @@ class NflPlayer
   field :born,      type: String
   field :college,   type: String
   field :draft,     type: String
+  field :opp,       type: String
+  field :season,    type: Integer
   field :_id,       type: String, default: ->{yahoo_id.to_s.parameterize}
   
   def to_json
