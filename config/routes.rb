@@ -14,7 +14,7 @@ Nfl::Application.routes.draw do
     get :unvote
   end
 
-  root :to => "polls#show"
+  root :to => "polls#vote"
 
   match "player_names" => "nfl_players#player_names", :as => :player_names
   match "my_polls" => "polls#my_polls", :as => :my_polls

@@ -28,11 +28,17 @@ class PollsController < ApplicationController
   end
 
   def show
+    @poll = Poll.find(params[:id])
+  end
+
+  def vote
     polls = Poll.excludes(:user => current_user).desc(:created_at).to_a
-    while !polls.nil? && !@poll.nil? 
+    while !polls.empty? && @poll.nil? 
       poll = polls.pop
-      @poll = poll if poll.voted(current_user)
+      @poll = poll if poll && !poll.voted?(current_user)
     end
+  
+    @last_poll = Poll.find(session[:last_poll]) if session[:last_poll]
       
   end
 

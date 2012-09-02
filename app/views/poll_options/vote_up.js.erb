@@ -1,1 +1,7 @@
-$('#<%=@poll_option.poll._id%>').html("<%= escape_javascript(render "polls/poll_show_form", :poll => @poll_option.poll)%>")
+<% session[:last_poll] = @poll_option.poll._id%>
+<% ap params %>
+<% if !@poll_option.poll.voted?(current_user) %>
+  $('#<%=@poll_option.poll._id%>').html("<%= escape_javascript(render "polls/poll_show_form", :poll => @poll_option.poll)%>")
+<% else %>
+  window.location.reload();
+<% end %>
