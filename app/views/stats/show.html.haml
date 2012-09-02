@@ -1,9 +1,7 @@
 -if nfl_player.stats[0] then      
   %table.table.table-striped.table-bordered
     %thead
-      %tr
-        -if @stat._type == "QbStat"
-      
+      %tr      
         -nfl_player.stats[0].stat_display_order.each do |label|
           %th
             =label
