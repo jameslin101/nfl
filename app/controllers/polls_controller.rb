@@ -45,7 +45,7 @@ class PollsController < ApplicationController
   def new
     @poll = Poll.new
     if params[:poll_options_attributes]
-      raise puts params[:poll_option_attributes].to_a.flatten.count({"name"=>""}).inspect
+      raise params[:poll_option_attributes].to_a.flatten.count({"name"=>""}).inspect
       params[:poll_options_attributes].to_a.flatten.count({"name"=>""}).times {@poll.poll_options.build}
     end
     5.times {@poll.poll_options.build}
@@ -61,7 +61,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(params[:poll])
     @poll.user_id = current_user.id
     if params[:poll_options_attributes]
-      raise puts params[:poll_option_attributes].to_a.flatten.count({"name"=>""}).inspect
+      raise  params[:poll_option_attributes].to_a.flatten.count({"name"=>""}).inspect
       params[:poll_options_attributes].to_a.flatten.count({"name"=>""}).times {@poll.poll_options.build}
     end
 
