@@ -9,6 +9,8 @@ class Poll
   #validate :require_two_players
   validates :note, :length => {:maximum => 240}
   
+  scope :week, ->(week){ where(week: week)}
+    
   QUESTION_TYPES = ["Who should I start?",
                     "Who should I pick up?"]
                    

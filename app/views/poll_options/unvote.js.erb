@@ -1,1 +1,1 @@
-$('#<%=@poll_option.poll._id%>').html("<%= escape_javascript(render "polls/poll_results", :poll => @poll_option.poll)%>")
+$('#<%=@poll_option.poll._id%>').html("<%= escape_javascript(render "polls/poll_show_form", :poll => @poll_option.poll)%>")

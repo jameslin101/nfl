@@ -9,18 +9,31 @@ class PollsController < ApplicationController
     @polls = Poll.where(:user => current_user).desc(:created_at)
   end
   
-  def my_stats
-    poll_options = current_user.poll_options
-    @polls = poll_options.map{|i| i.poll}
+  def my_votes
+    if params[:week]
+      @week = params[:week].to_i
+    else
+      #default to get last weeks data
+      @week = DateHelper::get_week(Time.now) - 1
+    end
+    @polls = current_user.polls_voted(@week)
   end
+      
+  def my_profile
+  end
+  
   
   def leaderboard
     @users = User.desc(:points)
   end
 
   def show
-    @poll = Poll.find(params[:id])
-
+    polls = Poll.excludes(:user => current_user).desc(:created_at).to_a
+    while !polls.nil? && !@poll.nil? 
+      poll = polls.pop
+      @poll = poll if poll.voted(current_user)
+    end
+      
   end
 
   def new

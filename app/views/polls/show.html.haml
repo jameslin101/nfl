@@ -1,8 +1,6 @@
-- unless user_signed_in? 
-  Please 
-  = link_to "log in", new_user_session_path
-  to vote or answer the question.<br/>
-  =render "poll_vote", :poll => @poll
-
+-if @poll
+  = render "polls/poll_show_form", :poll => @poll
+-else
+  %h1 No polls found. <br>
       
 = link_to 'Back', polls_path            

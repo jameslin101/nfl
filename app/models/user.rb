@@ -118,4 +118,16 @@ class User
     @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
   
+  def polls_voted(week = 0)
+    if week > 0 
+      @polls = self.poll_options.map{|i| if i.poll.week == week then i.poll end}
+    else
+      @polls = self.poll_options.map{|i| i.poll}
+    end
+    if @polls.length == 0 then 
+      return nil
+    else
+      return @polls
+    end
+  end
 end

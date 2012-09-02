@@ -1,0 +1,44 @@
+%h2 
+  You currently have:
+  =current_user.points
+  Guru Points!
+%p
+
+.navbar
+  .navbar-inner2
+    %ul.nav
+      -(0..17).each do |week|
+        - if week == @week 
+          %li.active2
+            - if week == 0 
+              =link_to "All Weeks", my_votes_path(:week => week)
+            - else
+              =link_to week, my_votes_path(:week => week)
+        - else 
+          %li
+            - if week == 0
+              =link_to "All Weeks", my_votes_path(:week => week)
+            - else
+              =link_to week, my_votes_path(:week => week)
+<br>
+%h2 Your votes:
+-@polls.each do |poll|
+  - if poll 
+    %h3
+      Week
+      =poll.week
+      \:
+      =poll.question
+      \-
+      =poll.subtitle
+    <p>
+    You voted for 
+    -poll.poll_options.each do |poll_option|
+      -if poll_option.users.include?(current_user)
+        = poll_option.name
+        and received
+        = poll_option.points
+        guru points.
+        <br>
+  
+  

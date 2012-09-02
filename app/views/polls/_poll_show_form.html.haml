@@ -1,0 +1,94 @@
+.span7
+  .row{:id => "#{poll._id}"}
+    .well
+      .row
+        .span4
+          %h2.poll-header
+            =poll.question
+          - if poll.user == current_user
+            -if poll.total_votes == 0 then
+              = link_to '<i class="icon-pencil">Edit</i>'.html_safe, edit_poll_path(poll), class:"edit_poll"
+            =button_to "Delete", poll, {:method => :delete, :confirm => "Are you sure?",
+                       :class => "btn btn-danger btn-mini"}
+          <br>
+          %h4#poll-subheader
+            Week
+            =poll.week
+            \:
+            =poll.subtitle
+            <br>
+            Scoring:
+            =poll.scoring
+        .span2
+          %h3.askedby
+            -if poll.user.image
+              =image_tag(poll.user.image)
+            &nbsp;
+            =poll.user.first_name                       
+            %p
+            .pick_more
+              - if poll.user_votes_left(current_user) > 0            
+                Choose
+                =poll.user_votes_left(current_user)
+                more.
+              - else
+                Thanks for voting!
+
+
+      .row
+        .span6
+          %table.table{:style => "table-layout:fixed"}
+            %colgroup
+              %col.span1
+              %col.span3
+              %col.span1
+              %col.span2
+            %thead
+              %tr
+                %td &nbsp;
+                %td Player
+                %td VS
+                %td Game
+            %tbody
+            - poll.poll_options.each_with_index do |poll_option, index|
+              - letter = index.to_s(27).tr("0-9a-q", "A-Z")
+              %tr
+                %td   
+                  -if poll_option.can_vote?(current_user)
+                    -if user_signed_in?
+                      =link_to letter, poll_option_vote_up_path(poll_option), :remote => true, 
+                                     :class =>"btn btn-primary", :id => poll_option._id
+                    -else
+                      =link_to letter, new_user_registration_path,
+                                     :class =>"btn btn-primary", :id => poll_option._id
+                  -else
+                    -if poll_option.voted?(current_user)
+                      =link_to '<i class="icon-ok"></i>'.html_safe,
+                                poll_option_unvote_path(poll_option), :remote => true, 
+                                :class =>"btn btn-warning ", :id => poll_option._id
+                %td
+                  -if poll_option.nfl_player.nil? 
+                    -poll_option.nfl_player = poll_option.set_nfl_player
+                  =poll_option.name
+                %td{:overflow => "hidden"}
+                  Team
+                %td
+                  Game Time
+      .row
+        .span6
+          %p
+          -if !poll.note.empty?
+            %h4
+              Notes:&nbsp
+              =poll.note  
+                  
+      .row
+        .pull-right
+          Asked
+          =time_ago_in_words(poll.created_at)
+          ago.
+
+          
+/ %td
+/   - if poll_option.poll.total_votes != 0 && poll_option.poll.voted?(current_user)
+/     = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
