@@ -106,8 +106,9 @@ def wait(i)
   sleep 5 if i % 2 == 0
 end
 
-def parse_football_player_list(player_type, url, week, year)
+def parse_football_player_list(player_type, url, week)
   year = 2011
+  #year = Time.today.year
   agent = Mechanize.new
   rank_count = 0
 
