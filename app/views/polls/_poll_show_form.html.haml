@@ -16,7 +16,7 @@
             =poll.week
             \:
             =poll.subtitle
-            <br>
+            %p
             Scoring:
             =poll.scoring
         .span2
@@ -24,7 +24,7 @@
             -if poll.user.image
               =image_tag(poll.user.image)
             &nbsp;
-            =poll.user.first_name                       
+            =poll.user.display_name                       
             %p
             .pick_more
               - if poll.user_votes_left(current_user) > 0            
@@ -65,11 +65,11 @@
                       =link_to '<i class="icon-ok"></i>'.html_safe,
                                 poll_option_unvote_path(poll_option), :remote => true, 
                                 :class =>"btn btn-warning ", :id => poll_option._id
-                %td
+                %td{:overflow => "hidden"}
                   -if poll_option.nfl_player.nil? 
                     -poll_option.nfl_player = poll_option.set_nfl_player
                   =poll_option.name
-                %td{:overflow => "hidden"}
+                %td
                   Team
                 %td
                   Game Time

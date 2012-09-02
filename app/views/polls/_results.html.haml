@@ -1,16 +1,20 @@
 .span4
   .well
     -if poll
-      %h2 Result from last poll:
+      %h3 
+        -if poll.user.display_name
+          =poll.user.display_name
+          asked:
+        =poll.question
       %table.table{:style => "table-layout:fixed"}
         %colgroup
-          %col.span3
+          %col.span2
           %col.span1
         %tbody
           - poll.poll_options.each_with_index do |poll_option, index|
             - letter = index.to_s(27).tr("0-9a-q", "A-Z")
             %tr
-              %td
+              %td{:overflow => "hidden"}
                 -if poll_option.nfl_player.nil? 
                   -poll_option.nfl_player = poll_option.set_nfl_player
                 =poll_option.name
@@ -21,4 +25,5 @@
         Out of
         =poll.total_votes
         votes.
-      =link_to poll_url(poll) 
+      
+      =link_to poll_url(poll), poll_path(poll)

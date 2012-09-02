@@ -64,6 +64,11 @@ class User
       return self.first_name + " " + self.last_name[0] + "."
     end
   end
+
+  def display_name
+    abbr_name || uid
+  end
+
   
   def self.from_omniauth(auth)
     user = where(auth.slice(:provider, :uid)).first || where(auth.slice(:provider, :uid)).create

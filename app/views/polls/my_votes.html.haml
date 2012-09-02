@@ -22,24 +22,10 @@
               =link_to week, my_votes_path(:week => week)
 <br>
 %h2 Your votes:
+.row
 -if @polls
   -@polls.each do |poll|
     - if poll 
-      %h3
-        Week
-        =poll.week
-        \:
-        =poll.question
-        \-
-        =poll.subtitle
-      <p>
-      You voted for 
-      -poll.poll_options.each do |poll_option|
-        -if poll_option.users.include?(current_user)
-          = poll_option.name
-          and received
-          = poll_option.points
-          guru points.
-          <br>
+      =render "polls/results", :poll => poll
   
   
