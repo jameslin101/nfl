@@ -4,6 +4,7 @@ require "hpricot"
 task :seed_players  => [:environment] do seed_players   end
 task :seed_season      => [:environment] do seed_season       end
 task :seed_week      => [:environment] do seed_week       end
+task :seed_gametimes      => [:environment] do seed_gametimes        end
 
 YAHOO_OFFENSE_SEASON_FOOTBALL_URL = "http://football.fantasysports.yahoo.com/f1/560932/players?status=ALL&pos=O&cut_type=9&stat1=S_S_***&myteam=0&sort=AR&sdir=1&count=###"
 YAHOO_KICKER_SEASON_FOOTBALL_URL = "http://football.fantasysports.yahoo.com/f1/560932/players?status=ALL&pos=K&cut_type=9&stat1=S_S_***&myteam=0&sort=AR&sdir=1&count=###"
@@ -13,7 +14,7 @@ YAHOO_OFFENSE_WEEK_FOOTBALL_URL = "http://football.fantasysports.yahoo.com/f1/56
 YAHOO_KICKER_WEEK_FOOTBALL_URL = "http://football.fantasysports.yahoo.com/f1/560932/players?&sort=AR&sdir=1&status=ALL&pos=K&stat1=S_W_***&count=###"
 YAHOO_DEFENSE_WEEK_FOOTBALL_URL = "http://football.fantasysports.yahoo.com/f1/560932/players?&sort=AR&sdir=1&status=ALL&pos=DEF&stat1=S_W_***&count=###"
 
-YAHOO_LOGIN_URL = "https://login.yahoo.com/config/login" 
+YAHOO_SCOREBOARD_URL = "http://sports.yahoo.com/nfl/scoreboard?w="  
 
 def seed_players
    parse_football_player_list('PLAYER',YAHOO_KICKER_SEASON_FOOTBALL_URL, 0)
@@ -242,3 +243,91 @@ def parse_football_player_list(player_type, url, week)
   end              
 end
   
+def seed_gametimes
+  
+  current_week = DateHelper::get_week
+  game_day = []
+  
+  #Create HashMap Lookup for Team Short Name to Player Team 
+  yahoo_team = {}
+  
+  yahoo_team['dal']='DAL'
+  yahoo_team['nyg']='NYG'
+  yahoo_team['nwe']='NE'
+  yahoo_team['ten']='TEN'
+  yahoo_team['mia']='MIA'
+  yahoo_team['hou']='HOU'
+  yahoo_team['buf']='BUF'
+  yahoo_team['nyj']='NYJ'
+  yahoo_team['atl']='ATL'
+  yahoo_team['kan']='KC'
+  yahoo_team['jac']='JAC'
+  yahoo_team['min']='MIN'
+  yahoo_team['phi']='PHI'
+  yahoo_team['cle']='CLE'
+  yahoo_team['ind']='IND'
+  yahoo_team['chi']='CHI'
+  yahoo_team['was']='WAS'
+  yahoo_team['nor']='NO'
+  yahoo_team['stl']='STL'
+  yahoo_team['det']='DET'
+  yahoo_team['car']='CAR'
+  yahoo_team['tam']='TB'
+  yahoo_team['sea']='SEA'
+  yahoo_team['ari']='ARI'
+  yahoo_team['sfo']='SF'
+  yahoo_team['gnb']='GB'
+  yahoo_team['pit']='PIT'
+  yahoo_team['den']='DEN'
+  yahoo_team['cin']='CIN'
+  yahoo_team['bal']='BAL'
+  yahoo_team['sdg']='SD'
+  yahoo_team['oak']='OAK'
+    
+  puts Time.now.to_s
+  puts YAHOO_SCOREBOARD_URL+current_week.to_s
+  agent = Mechanize.new
+  page = agent.get(YAHOO_SCOREBOARD_URL+current_week.to_s)  
+  doc = Hpricot(page.parser.to_s)    
+    
+  doc.search("a[@class=tickets yspmore]").each do |item|
+    date_string = item[:href].split('date=').last+' -04:00'
+      
+    game_day.push(DateTime.parse(date_string))
+  end
+  
+  count = 0
+  array_count = 0
+  time_string = ''
+  doc.search("tr[@class=ysptblclbg5]").each do |item|
+    team_name = item.search("a").first[:href].split('teams/').last
+    
+    if (count%2 == 0)
+      time_string = item.search("span[@class=yspscores]").first.innerHTML.strip
+    end
+    game_date = game_day[array_count]
+    
+    time_split = time_string.split(' ')
+    hour = time_split.first.split(':').first.to_i + 12
+    min = time_split.first.split(':').last.to_i
+    
+    game_time = DateTime.new(game_date.year,game_date.mon,game_date.mday,hour,min,0,'-4')
+    
+    #Update game time for NflPlayers for every team on scoreboard
+    #Teams with BYE opponent will not have time updated
+    #puts yahoo_team[team_name] + '-' + game_time.to_s
+    puts "Updating Team Gametime - #{yahoo_team[team_name]}"
+    players = NflPlayer.where(team: yahoo_team[team_name])
+    players.each do |player| 
+      player.game_time = game_time
+      player.save
+    end
+    count += 1     
+    if (count%2 == 0)
+      array_count+=1
+    end
+    
+    #puts item    
+  end
+  
+end
