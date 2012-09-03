@@ -16,6 +16,7 @@ class NflPlayer
   field :draft,     type: String
   field :opp,       type: String
   field :season,    type: Integer
+  field :game_time, type: DateTime
   field :_id,       type: String, default: ->{yahoo_id.to_s.parameterize}
   
   def to_json
