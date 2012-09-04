@@ -67,7 +67,20 @@ class User
   end
 
   def display_name
-    username || abbr_name || uid
+    if !username.blank?
+      return username
+    end
+    if !abbr_name.blank?
+      return abbr_name
+    end
+    if !uid.blank?
+      return uid
+    end
+    if !email.blank?
+      return email
+    end
+      
+    
   end
 
   

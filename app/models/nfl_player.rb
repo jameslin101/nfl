@@ -16,7 +16,7 @@ class NflPlayer
   field :draft,     type: String
   field :opp,       type: String
   field :season,    type: Integer
-  field :game_time, type: DateTime
+  field :game_time, type: Time
   field :_id,       type: String, default: ->{yahoo_id.to_s.parameterize}
   
   def to_json
@@ -30,5 +30,11 @@ class NflPlayer
     " - " +
     self.position + 
     ")"
+  end
+  
+  def game_time_formatted
+    if self.game_time
+      self.game_time.localtime.strftime('%a %l:%M%P')
+    end
   end
 end

@@ -31,5 +31,14 @@ class PollOptionsController < ApplicationController
       end
     end
   end
+  
+  
+  def display_stats
+    @poll_option = PollOption.find(params[:poll_option_id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
 end

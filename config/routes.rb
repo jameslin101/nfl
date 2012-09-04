@@ -12,6 +12,7 @@ Nfl::Application.routes.draw do
   resources :poll_options do
     get :vote_up
     get :unvote
+    get :display_stats
   end
 
   root :to => "polls#vote"

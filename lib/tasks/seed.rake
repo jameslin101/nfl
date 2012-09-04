@@ -172,14 +172,15 @@ def parse_football_player_list(player_type, url, week)
       player.team = team_short_name.upcase
       
       
-      player.season = year 
+      player.season = year.to_s
       player.opp = (row/"td")[3].innerHTML
       
      
      if (player_type == 'OFF')
        if ((row/"td")[6].innerHTML.strip.to_s.index('-').nil?)
-         
+        
         stat = player.stats.find_or_create_by(week: week)
+        stat.season = year.to_s
         stat.week = week
         stat.opp = (row/"td")[3].innerHTML
         stat.pass_yds = (row/"td")[8].innerHTML.to_i        
@@ -199,7 +200,8 @@ def parse_football_player_list(player_type, url, week)
      if (player_type == 'DEF')
        if ((row/"td")[6].innerHTML.strip.to_s.index('-').nil?)
          
-        stat = player.stats.find_or_create_by(week: week)
+        stat = player.stats.find_or_create_by(week: week, season: seasone)
+        stat.season = year.to_s
         stat.week = week
         stat.opp = (row/"td")[3].innerHTML
         stat.pts_allow = (row/"td")[8].innerHTML.to_i        
@@ -218,7 +220,8 @@ def parse_football_player_list(player_type, url, week)
      if (player_type == 'KICK')
        if ((row/"td")[6].innerHTML.strip.to_s.index('-').nil?)
          
-        stat = player.stats.find_or_create_by(week: week)
+        stat = player.stats.find_or_create_by(week: week, season: season)
+        stat.season = year.to_s
         stat.week = week
         stat.opp = (row/"td")[3].innerHTML
         stat.fg10 = (row/"td")[8].innerHTML.to_i        

@@ -31,10 +31,18 @@ class Stat
   field :opp, type: String
   field :team, type: String
   field :games, type: Integer
-  field :_id, type: String, default: ->{week.to_s.parameterize}
+  field :_id, type: String, default: ->{(season + "_" + week).to_s.parameterize}
   
   attr_accessible :season, :team, :games
   embedded_in :nfl_player
+  
+  def pass_yds_per_gm
+    return pass_yds / games if games
+  end
+  
+  def rush_yds_per_gm
+    return rush_yds / games if games
+  end
   
   
 end

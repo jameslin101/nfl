@@ -68,12 +68,14 @@
                 %td{:overflow => "hidden"}
                   -if poll_option.nfl_player.nil? 
                     -poll_option.nfl_player = poll_option.set_nfl_player
-                  =poll_option.name
+                  =link_to poll_option.name, poll_option_display_stats_path(poll_option), :remote => true, 
+                           :id => poll_option._id
                 %td
                   -if !poll_option.nfl_player.nil? 
                     =poll_option.nfl_player.opp
                 %td
-                  Game Time
+                  -if !poll_option.nfl_player.nil? 
+                    =poll_option.nfl_player.game_time_formatted
       .row
         .span6
           %p

@@ -1,0 +1,39 @@
+-poll.poll_options.each do |poll_option|
+  -player = poll_option.nfl_player
+  -if player
+    .well.span8{:id => "#{player.yahoo_id}", :style => "display: none"}
+      %h2=player.name
+      -stat = player.stats[0]
+      -if player.position == "QB"
+        %table.table
+          %thead
+            %tr
+              %td{:colspan => "2"} Recent Career
+              %td 
+              %td{:colspan => "3"} Passing
+              %td 
+              %td{:colpsan => "2"} Rushing
+            %tr
+              %td Year
+              %td Week
+              %td 
+              %td Yds
+              %td TD
+              %td Int
+              %td 
+              %td Yds
+              %td TD
+          %tbody
+            %tr
+              %td=stat.season
+              %td=if stat.week == 0 then "All" else stat.week end
+              %td
+              %td=stat.pass_yds
+              %td=stat.pass_td                 
+              %td=stat.intercept
+              %td
+              %td=stat.rush_yds
+              %td=stat.rush_td
+
+                
+          
