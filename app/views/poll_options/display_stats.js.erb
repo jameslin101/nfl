@@ -1,1 +1,3 @@
-$('#<%= @poll_option.nfl_player.yahoo_id %>').show();
+<% if !@poll_option.nfl_player.nil? %>
+  $('#<%= @poll_option.nfl_player.yahoo_id %>').show();
+<% end %>

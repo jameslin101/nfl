@@ -1,7 +1,6 @@
 class PollOption
   include Mongoid::Document
-  #include Mongo::Voteable
-  
+    
   belongs_to :poll
   attr_accessible :vote_count, :voters, :name
   validate :set_nfl_player
@@ -51,13 +50,11 @@ class PollOption
         query = NflPlayer.where(name: full_name)
       end
       if query.count == 1
-        self.nfl_player = query[0]
-        self.save
+        return self.nfl_player = query[0]
       else
         if query.count > 1
           team = k[2].sub("(","")
-          self.nfl_player = NflPlayer.where(name: full_name, team: team)[0]
-          self.save
+          return self.nfl_player = NflPlayer.where(name: full_name, team: team)[0]
         else
           errors[:valid_poll]= "Unable to find player: #{self.name}."
         end
