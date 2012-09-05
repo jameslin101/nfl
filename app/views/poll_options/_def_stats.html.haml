@@ -1,0 +1,43 @@
+%table.table
+  %thead
+    %tr
+      %td{:colspan => "2"} Recent Career
+      %td 
+      %td
+      %td
+      %td{:colspan => "2"} Tackles
+      %td 
+      %td{:colpsan => "2"} Turnovers
+      %td 
+      %td{:colpsan => "3"} Misc
+    %tr
+      %td Year
+      %td Week
+      %td
+      %td Pts Allow 
+      %td 
+      %td Sack
+      %td Safe
+      %td 
+      %td Int
+      %td Fum Rec
+      %td
+      %td Def TD
+      %td Blk Kick
+      %td Ret TD
+  %tbody
+    %tr
+      %td=stats.season
+      %td=if stats.week == 0 then "All" else stats.week end
+      %td
+      %td=stats.pts_allow
+      %td
+      %td=stats.sack                 
+      %td=stats.safe
+      %td
+      %td=stats.def_int
+      %td=stats.def_fumble
+      %td
+      %td=stats.def_td
+      %td=stats.block_kick
+      %td=stats.def_ret_td

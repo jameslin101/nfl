@@ -51,11 +51,13 @@ class PollOption
         query = NflPlayer.where(name: full_name)
       end
       if query.count == 1
-        return self.nfl_player = query[0]
+        self.nfl_player = query[0]
+        self.save
       else
         if query.count > 1
           team = k[2].sub("(","")
-          return self.nfl_player = NflPlayer.where(name: full_name, team: team)[0]
+          self.nfl_player = NflPlayer.where(name: full_name, team: team)[0]
+          self.save
         else
           errors[:valid_poll]= "Unable to find player: #{self.name}."
         end

@@ -1,8 +1,7 @@
-%h1
-  Listing polls
-
-=link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
-
+.row.span12
+  %h1 Listing polls
+  =link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
+  <br><br>
 -@polls.each do |poll|
   =render "view_poll", :poll => poll
 %p

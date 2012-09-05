@@ -1,0 +1,29 @@
+%table.table
+  %thead
+    %tr
+      %td{:colspan => "2"} Recent Career
+      %td 
+      %td{:colspan => "2"} Rushing
+      %td 
+      %td{:colpsan => "2"} Receiving
+    %tr
+      %td Year
+      %td Week
+      %td 
+      %td Yds
+      %td TD
+      %td 
+      %td Rec
+      %td Yds
+      %td TD    
+  %tbody
+    %tr
+      %td=stats.season
+      %td=if stats.week == 0 then "All" else stats.week end
+      %td
+      %td=stats.rush_yds
+      %td=stats.rush_td             
+      %td
+      %td=stats.rec
+      %td=stats.rec_yds
+      %td=stats.rec_td

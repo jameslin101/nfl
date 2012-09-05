@@ -3,8 +3,7 @@
   -if @last_poll
     %h2 &nbsp; &nbsp; Result from last poll
     = render "polls/results", {:poll => @last_poll}
-  = render "poll_options/stats", {:poll => @poll}
-          
+  =render "poll_options/stats", {:poll => @poll}          
       
 -else
   %h1 You have answered all the polls! <br>

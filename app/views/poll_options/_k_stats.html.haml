@@ -1,0 +1,30 @@
+%table.table
+  %thead
+    %tr
+      %td{:colspan => "2"} Recent Career
+      %td 
+      %td{:colspan => "5"} Field Goals Made
+      %td
+      %td PAT Made
+    %tr
+      %td Year
+      %td Week
+      %td 
+      %td 0-20
+      %td 20-29
+      %td 30-39
+      %td 40-49
+      %td 50+
+      %td
+      %td made
+  %tbody
+    %tr
+      %td=stats.season
+      %td=if stats.week == 0 then "All" else stats.week end
+      %td
+      %td=stats.rush_yds
+      %td=stats.rush_td             
+      %td
+      %td=stats.rec
+      %td=stats.rec_yds
+      %td=stats.rec_td
