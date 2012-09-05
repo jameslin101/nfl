@@ -1,10 +1,17 @@
 .well.span4
   -if poll
-    %h3 
+    %h3
+      =time_ago_in_words(poll.created_at)
+      ago,
       -if poll.user.display_name
         =poll.user.display_name
         asked:
+      <br>
+      ( Week
+      =poll.week
+      )
       =poll.question
+      
     %table.table
       %colgroup
         %col.span2

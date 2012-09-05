@@ -17,6 +17,8 @@ class PollsController < ApplicationController
       @week = DateHelper::get_week(Time.now) - 1
     end
     @polls = current_user.polls_voted(@week)
+    @polls.sort{ |x,y| x.created_at <=> y.created_at}
+    #.sort { |d| d.created_at}
   end
       
   def my_profile
