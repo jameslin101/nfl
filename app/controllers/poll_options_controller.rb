@@ -35,8 +35,9 @@ class PollOptionsController < ApplicationController
   
   def display_stats
     @poll_option = PollOption.find(params[:poll_option_id])
-
+    @poll_option.nfl_player.inspect
     respond_to do |format|
+      format.html
       format.js
     end
   end

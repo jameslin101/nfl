@@ -66,12 +66,10 @@
                                 poll_option_unvote_path(poll_option), :remote => true, 
                                 :class =>"btn btn-warning ", :id => poll_option._id
                 %td{:overflow => "hidden"}
-                  -poll_option.nfl_player = poll_option.set_nfl_player
+                  -poll_option.set_nfl_player
                   -if !poll_option.nfl_player.nil?
-                    =poll_option.nfl_player.inspect
-                    -po = poll_option
                     =link_to poll_option.nfl_player.name_team_pos,
-                             poll_option_display_stats_path(po), 
+                             poll_option_display_stats_path(poll_option), 
                             :id => poll_option._id, :remote => true
                   -else
                     =poll_option.name
