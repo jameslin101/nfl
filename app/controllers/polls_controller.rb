@@ -46,10 +46,6 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
-    # if params[:poll][:poll_options_attributes]
-    #   raise params[:poll][:poll_option_attributes].to_a.flatten.count({"name"=>""}).inspect
-    #   params[:poll][:poll_options_attributes].to_a.flatten.count({"name"=>""}).times {@poll.poll_options.build}
-    # end
     5.times {@poll.poll_options.build}
   end
 

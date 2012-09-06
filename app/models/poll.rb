@@ -54,7 +54,20 @@ class Poll
   def voted?(user)
     self.user_votes_left(user) == 0
   end
-
+  
+  def editable?
+    return self.total_votes == 0 && !self.expired?
+  end
+  
+  def expired?
+    if DateHelper::get_week(Time.now) > self.week
+      return true
+    end
+    self.poll_options.each do |poll_option|
+      return true if poll_option.expired?      
+    end
+    return false
+  end
   
   private
     def valid_poll

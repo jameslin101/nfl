@@ -2,8 +2,8 @@ class PollOption
   include Mongoid::Document
     
   belongs_to :poll
-  attr_accessible :vote_count, :voters, :name
-  validate :set_nfl_player
+  attr_accessible :vote_count, :voters, :name, :nfl_player
+  before_save :set_nfl_player
   
   field :name, type: String
   field :points_right, type: Integer, default: 0
@@ -12,6 +12,7 @@ class PollOption
   #field :voters, type: Array, default: []
   has_and_belongs_to_many :users
   has_one :nfl_player
+  accepts_nested_attributes_for :nfl_player 
   
   
   def vote_up(user)
@@ -61,11 +62,13 @@ class PollOption
     end
   end
   
+  def expired?
+    return self.nfl_player.game_time < Time.now.utc if self.nfl_player
+    return false
+  end
+  
   def display
-    if self.nfl_player
-      return nfl_player.name_team_pos
-    else
-      return self.name
-    end
+    return nfl_player.name_team_pos if self.nfl_player
+    return self.name
   end
 end

@@ -6,10 +6,10 @@
           %h2.poll-header
             =poll.question
           - if poll.user == current_user
-            -if poll.total_votes == 0 then
+            -if poll.editable?
               = link_to '<i class="icon-pencil">Edit</i>'.html_safe, edit_poll_path(poll), class:"edit_poll"
-            =button_to "Delete", poll, {:method => :delete, :confirm => "Are you sure?",
-                       :class => "btn btn-danger btn-mini"}
+              =button_to "Delete", poll, {:method => :delete, :confirm => "Are you sure?",
+                         :class => "btn btn-danger btn-mini"}
           <br>
           %h4#poll-subheader
             Week
@@ -26,13 +26,16 @@
             &nbsp;
             =poll.user.display_name                       
             %p
-            .pick_more
-              - if poll.user_votes_left(current_user) > 0            
-                Choose
-                =poll.user_votes_left(current_user)
-                more.
-              - else
-                Thanks for voting!
+            - if poll.expired?
+              %p This poll has expired.
+            - else
+              .pick_more
+                - if poll.user_votes_left(current_user) > 0            
+                  Choose
+                  =poll.user_votes_left(current_user)
+                  more.
+                - else
+                  Thanks for voting!
   
       .row
         .span6
@@ -53,7 +56,7 @@
               - letter = index.to_s(27).tr("0-9a-q", "A-Z")
               %tr
                 %td   
-                  -if poll_option.can_vote?(current_user)
+                  -if poll_option.can_vote?(current_user) && !poll.expired?
                     -if user_signed_in?
                       =link_to letter, poll_option_vote_up_path(poll_option), :remote => true, 
                                      :class =>"btn btn-primary", :id => poll_option._id
@@ -66,7 +69,6 @@
                                 poll_option_unvote_path(poll_option), :remote => true, 
                                 :class =>"btn btn-warning ", :id => poll_option._id
                 %td{:overflow => "hidden"}
-                  -poll_option.set_nfl_player
                   -if !poll_option.nfl_player.nil?
                     =link_to poll_option.nfl_player.name_team_pos,
                              poll_option_display_stats_path(poll_option), 
