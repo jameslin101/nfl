@@ -21,9 +21,8 @@
           - letter = index.to_s(27).tr("0-9a-q", "A-Z")
           %tr
             %td{:overflow => "hidden"}
-              -if poll_option.nfl_player.nil? 
-                -poll_option.nfl_player = poll_option.set_nfl_player
-              =poll_option.name
+              -poll_option.set_nfl_player
+              =poll_option.display
             %td
               - if poll_option.poll.total_votes != 0
                 = "%2d%" % (poll_option.users.count.to_f / poll_option.poll.total_votes.to_f * 100)
@@ -33,5 +32,25 @@
       Out of
       =poll.total_votes
       votes.
-    
+      =link_to "Show User Votes",
+                poll_user_results_path(poll), :remote => true, 
+                :class =>"btn btn-warning"
     =link_to poll_url(poll), poll_path(poll)
+    <br><br>
+    %table.table{:id => "user_result_"+poll._id.to_s, :style=>"display:none"}
+      -poll.poll_options.each do |poll_option|
+        %tr
+          %th{:colspan => 3}
+            %h4
+              =poll_option.users.count
+              votes for:
+              =poll_option.display
+        -poll_option.users.each do |user|
+          %tr
+            %td=user.display_name 
+            %td 
+              -if user.image
+                =image_tag(user.image)
+            %td
+              FIQ:
+              =user.fiq

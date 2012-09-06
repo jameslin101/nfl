@@ -125,12 +125,13 @@ class User
     end
   end
   
-  def points
-    points = 0
+  def fiq
+    fiq = 0
     self.poll_options.each do |p|
-      points += p.points
+      fiq += p.points_right
+      fiq -= p.points_wrong
     end
-    points
+    fiq
   end
   
   def facebook

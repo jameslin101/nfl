@@ -91,4 +91,12 @@ class PollsController < ApplicationController
     redirect_to polls_path
   end
   
+  
+  def user_results
+    @poll = Poll.find(params[:poll_id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 end

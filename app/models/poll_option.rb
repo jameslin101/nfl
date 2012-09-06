@@ -6,7 +6,6 @@ class PollOption
   validate :set_nfl_player
   
   field :name, type: String
-  field :points, type: Integer, default: 0
   field :points_right, type: Integer, default: 0
   field :points_wrong, type: Integer, default: 0
   #field :vote_count, type: Integer, default: 0
@@ -62,4 +61,11 @@ class PollOption
     end
   end
   
+  def display
+    if self.nfl_player
+      return nfl_player.name_team_pos
+    else
+      return self.name
+    end
+  end
 end

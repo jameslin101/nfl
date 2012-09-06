@@ -7,6 +7,7 @@ Nfl::Application.routes.draw do
   
   resources :polls do
     get 'page/:page', :action => :index, :on => :collection
+    get :user_results
   end
   
   resources :poll_options do
