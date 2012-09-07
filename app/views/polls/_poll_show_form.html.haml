@@ -54,6 +54,7 @@
             %tbody
             - poll.poll_options.each_with_index do |poll_option, index|
               - letter = index.to_s(27).tr("0-9a-q", "A-Z")
+              - poll_option.set_nfl_player
               %tr
                 %td   
                   -if poll_option.can_vote?(current_user) && !poll.expired?

@@ -63,6 +63,9 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    fredit (0.2.9)
+      git
+    git (1.2.5)
     google-webfonts (0.1.2)
       actionpack (>= 3.0.0)
     haml (3.1.7)
@@ -213,6 +216,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  fredit
   google-webfonts
   haml
   hirb
