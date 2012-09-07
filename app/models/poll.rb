@@ -26,6 +26,7 @@ class Poll
   #field :votes,             type: Integer, default: 0
   field :max_vote_options,  type: Integer, default: 1
   #field :user_votes,        type: Hash, default: {}
+  field :expired,           type: Boolean
   
   def total_votes
     v = 0
@@ -61,12 +62,13 @@ class Poll
   
   def expired?
     if DateHelper::get_week(Time.now) > self.week
-      return true
+      self.expired = true
     end
     self.poll_options.each do |poll_option|
-      return true if poll_option.expired?      
+      self.expired = true if poll_option.expired?      
     end
-    return false
+    self.save
+    self.expired
   end
   
   private

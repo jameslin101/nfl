@@ -10,8 +10,9 @@ class PollOption
   #field :voters, type: Array, default: []
   has_and_belongs_to_many :users
   has_one :nfl_player
-
-  before_save :set_nfl_player
+  
+  validate :set_nfl_player
+  #before_save :set_nfl_player
 
   attr_accessible :vote_count, :voters, :name, :nfl_player
   

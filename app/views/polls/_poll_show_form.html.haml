@@ -57,18 +57,19 @@
               - poll_option.set_nfl_player
               %tr
                 %td   
-                  -if poll_option.can_vote?(current_user) && !poll.expired?
-                    -if user_signed_in?
-                      =link_to letter, poll_option_vote_up_path(poll_option), :remote => true, 
-                                     :class =>"btn btn-primary", :id => poll_option._id
+                  -if !poll.expired?
+                    -if poll_option.can_vote?(current_user)
+                      -if user_signed_in?
+                        =link_to letter, poll_option_vote_up_path(poll_option), :remote => true, 
+                                       :class =>"btn btn-primary", :id => poll_option._id
+                      -else
+                        =link_to letter, new_user_registration_path,
+                                       :class =>"btn btn-primary", :id => poll_option._id
                     -else
-                      =link_to letter, new_user_registration_path,
-                                     :class =>"btn btn-primary", :id => poll_option._id
-                  -else
-                    -if poll_option.voted?(current_user)
-                      =link_to '<i class="icon-ok"></i>'.html_safe,
-                                poll_option_unvote_path(poll_option), :remote => true, 
-                                :class =>"btn btn-warning ", :id => poll_option._id
+                      -if poll_option.voted?(current_user)
+                        =link_to '<i class="icon-ok"></i>'.html_safe,
+                                  poll_option_unvote_path(poll_option), :remote => true, 
+                                  :class =>"btn btn-warning ", :id => poll_option._id
                 %td{:overflow => "hidden"}
                   -if !poll_option.nfl_player.nil?
                     =link_to poll_option.nfl_player.name_team_pos,
