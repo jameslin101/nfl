@@ -1,21 +1,27 @@
+.row-fluid
 -poll.poll_options.each do |poll_option|
   -player = poll_option.nfl_player
   -if player
-    .well.span8{:id => "#{player.yahoo_id}", :style=>"display:none"}  
-      %h2=player.name
-      -stats = player.stats[0]
-      -if stats then
-        -if player.position == "QB"
-          =render "poll_options/qb_stats", :stats => stats
-        -if player.position == "RB"
-          =render "poll_options/rb_stats", :stats => stats
-        -if player.position == "WR"
-          =render "poll_options/wr_stats", :stats => stats
-        -if player.position == "TE"
-          =render "poll_options/wr_stats", :stats => stats              
-        -if player.position == "K"
-          =render "poll_options/k_stats", :stats => stats              
-        -if player.position == "DEF"
-          =render "poll_options/def_stats", :stats => stats              
-      -else
-        %p No stats available.
+    .row-fluid
+      .span1
+      .span6
+        .pane.player-pane{:id => "#{player.yahoo_id}", :style=>"display:none"}
+          .row-fluid
+            %h1=player.name
+          .row-fluid  
+            -stats = player.stats[0]
+            -if stats then
+              -if player.position == "QB"
+                =render "poll_options/qb_stats", :stats => stats
+              -if player.position == "RB"
+                =render "poll_options/rb_stats", :stats => stats
+              -if player.position == "WR"
+                =render "poll_options/wr_stats", :stats => stats
+              -if player.position == "TE"
+                =render "poll_options/wr_stats", :stats => stats              
+              -if player.position == "K"
+                =render "poll_options/k_stats", :stats => stats              
+              -if player.position == "DEF"
+                =render "poll_options/def_stats", :stats => stats              
+            -else
+              %p No stats available.

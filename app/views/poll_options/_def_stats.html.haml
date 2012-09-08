@@ -1,4 +1,4 @@
-%table.table
+%table.table.polltable
   %thead
     %tr
       %td{:colspan => "2"} Recent Career
@@ -26,7 +26,7 @@
       %td Blk Kick
       %td Ret TD
   %tbody
-    %tr
+    %tr.poll-row
       %td=stats.season
       %td=if stats.week == 0 then "All" else stats.week end
       %td
