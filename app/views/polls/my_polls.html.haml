@@ -1,13 +1,8 @@
 .row.span12
   %h1 My Poll Results
+  <br><br>
   =link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
   <br><br>
 -@polls.each do |poll|
-  .row
-    .span7
-      =render "polls/view_poll", :poll => poll
-    .span4
-      %h2 
-        &nbsp;&nbsp;&nbsp;
-        Poll Results:
-      =render "polls/results", :poll => poll
+  =render "polls/view_poll", :poll => poll
+  =render "polls/results", {:poll => poll, :last_poll => true}

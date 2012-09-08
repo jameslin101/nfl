@@ -25,6 +25,6 @@
 -if @polls
   -@polls.each do |poll|
     - if poll 
-      =render "polls/results", :poll => poll
+      =render "polls/results", {:poll => poll, :last_poll => false}
   
   

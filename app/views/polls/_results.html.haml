@@ -3,13 +3,12 @@
     %h1 Results From Last Poll
   -if poll
     .row-fluid
+      %h1="(Week #{poll.week}) #{poll.question}"
       %p
         =time_ago_in_words(poll.created_at)
         ago,
         -if poll.user.display_name
           =poll.user.display_name
-          asked:
-      ="(Week #{poll.week}) #{poll.question}"
     .row-fluid
       %table.table.polltable
         %colgroup
