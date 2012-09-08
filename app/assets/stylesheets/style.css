@@ -1,0 +1,195 @@
+/*
+Author:  	Leonard Li
+URL:		FanSensus.com
+Version: 	v1
+
+663300 - Brown
+339900 - Green
+A6A408 - Light Green
+8B4C39 - Another Brown
+*/
+
+ /* Base Standards Overrides */
+
+body {
+	font-size: 0.9em;
+	color: #FFFFFF;
+	background: url(http://us.123rf.com/400wm/400/400/dehooks/dehooks1008/dehooks100800007/7625550-closeup-of-50-yard-line-on-american-football-field.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+h1 {
+	font-size: 1.9em;
+	color: #000;
+	display: inline;
+	line-height: normal;
+}
+
+h2 {
+	font-size: 1.0em;
+	line-height: normal;
+}
+
+h3 {
+	font-size: 0.9em;
+	line-height: normal;
+}
+
+h4 {
+	font-size: 1.2em;
+	line-height: normal;
+}
+
+table {
+	font-size: 1em;
+}
+
+	.player-pane table {
+		font-size: 0.9em;
+	}
+	
+	.profilestats-pane table tfoot {
+		font-weight: bold;
+	}
+
+p {}
+
+.clear {
+	display:block;
+}
+
+.spacing {
+	display: block;	
+	margin: 20px 0px;
+}
+
+.floatleft{
+	float:left;
+}
+
+.floatright{
+	float:right;
+}
+
+/* Custom Styles */
+.fan {
+	font-size: 1em;
+	color: #FFFFFF;
+	font-weight: 750;
+}
+
+.sensus {
+font-size: 1em;
+color: #339900;
+font-weight: 690;
+}
+
+.fiq-tiny {
+	font-size: 0.9em;
+	margin-bottom: 0.5em;
+	display:block;
+	font-color: #000000;
+}
+
+.fiq-number {
+	font-weight: bold;
+	font-size: 2.5em;
+	font-color: #000;
+}
+
+.greentext {
+	color: #339900;
+}
+
+.pollbtn {
+	margin: 0;
+	padding: 3px 15px;
+}
+
+.header-topright {
+	float: right;
+	margin-top:7px;	
+}
+
+/* Pane Styles */
+.pane {
+	display: block;
+	float: left;
+	overflow: hidden;
+	color: #5C3317;
+
+	width: 90%;
+	padding: 20px 20px 20px 20px;		
+	margin: 15px 0 0 0;
+
+	font-size: 1em;
+	border: 1px solid #663300;
+	/*border: 1px solid orange;*/
+	background: lightyellow;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+}
+
+	.grey-pane {
+		font-size: 0.8em;
+		opacity: 0.9;
+		background: lightgrey;
+	}
+
+	.white-pane {
+		font-size: 0.8em;
+		opacity: 0.9;
+		background: #FFFFFF;
+	}
+
+	.player-pane {
+		/*background: url(http://www.andreas.blicher.info/images/talabheim_paper.jpg) no-repeat center center fixed; */
+		background: url(http://www.andreas.blicher.info/images/talabheim_paper.jpg) no-repeat center center fixed; 
+		-moz-border-radius: 0;
+		-webkit-border-radius: 0;
+		border-radius: 0;
+		float:left;
+	}
+
+
+/* Sticky Footer */
+
+* {
+	margin: 0 ;
+}
+body, html {
+	height:100%;
+}
+
+.wrapper {
+	min-height:100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -5px;
+}
+
+.footer, .push {
+	height: 5px;
+	clear: both;
+}
+
+footer .navbar .nav > li > p {
+  float: none;
+  padding: 9px 20px 0 10px;
+  line-height: 19px;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+/* Responsive Design */
+
+@media only screen and (max-width:420px) {
+
+}
+

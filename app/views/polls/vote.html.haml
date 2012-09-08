@@ -1,15 +1,13 @@
--if @poll
-  = render "polls/poll_show_form", {:poll => @poll}
-  -if @last_poll
-    %h2 &nbsp; &nbsp; Result from last poll
-    = render "polls/results", {:poll => @last_poll}
-  =render "poll_options/stats", {:poll => @poll}          
+.row-fluid
+  .span1
+  -if @poll
+    = render "polls/poll_show_form", {:poll => @poll}
+    -if @last_poll
+      = render "polls/results", {:poll => @last_poll, :last_poll => true }
+    =render "poll_options/stats", {:poll => @poll}                
+  -else
+    .poll-pane.span6.pane
+      %h1 You have answered all the polls! <br>
+      %h3 Make a new poll?
+      =link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
       
--else
-  %h1 You have answered all the polls! <br>
-  %h3 Make a new poll?
-  =link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
-  
-.row
-  .span12
-    = link_to 'Back', polls_path            
