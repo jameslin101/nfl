@@ -41,17 +41,15 @@
               %li
                 = link_to ('Sign in'), new_user_session_path
 
-  .container
-    .content
-      .row
-        .span12
-          - if flash[:notice]
-            .alert.alert-success
-              = flash[:notice]
-          - if flash[:error]
-            .alert.alert-error
-              = flash[:error]
-          = yield
+  .container-fluid
+    .row-fluid
+      - if flash[:notice]
+        .alert.alert-success
+          = flash[:notice]
+      - if flash[:error]
+        .alert.alert-error
+          = flash[:error]
+      = yield
 %footer
   .container
     %hr
