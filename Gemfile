@@ -26,6 +26,8 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem 'hpricot'
 gem 'mechanize', '2.4'
+gem 'rest-client'
+gem 'multimap'
 #gem 'fredit'
 # Gems used only for assets and not required
 # in production environments by default.

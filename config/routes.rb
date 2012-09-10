@@ -23,6 +23,7 @@ Nfl::Application.routes.draw do
   match "my_votes" => "polls#my_votes", :as => :my_votes
   match "leaderboard" => "polls#leaderboard", :as => :leaderboard
 
+  match "incoming_mail" => "mailgun#incoming_mail"
 
 
   # The priority is based upon order of creation:
