@@ -37,7 +37,6 @@ class User
   validates_acceptance_of :terms_of_service, :accept => 1 
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_presence_of :username
 
   ## Recoverable
   field :reset_password_token,   :type => String
