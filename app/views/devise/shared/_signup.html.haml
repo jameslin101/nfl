@@ -35,7 +35,9 @@
             = f.password_field :password_confirmation, :class => "input-medium", :placeholder => "Confirm Password"  
             %p
             = f.check_box :terms_of_service, :class => "checkbox"
-            I agree to Fansensus
-            = link_to "terms and conditions.", tos_path     
+            I agree to the
+            = link_to "terms", tos_path   
+            and
+            = link_to "privacy policy", privacy_path
           =f.submit "Sign up",:class => "btn btn-success btn-large"
 
