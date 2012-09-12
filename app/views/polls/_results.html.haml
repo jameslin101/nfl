@@ -3,8 +3,10 @@
     %h1 Results From Last Poll
   -if poll
     .row-fluid
-      %h1="(Week #{poll.week}) #{poll.question}"
+      %h1="#{poll.question}"
       %p
+        =(Week #{poll.week})
+        , 
         =time_ago_in_words(poll.created_at)
         ago,
         -if poll.user.display_name
