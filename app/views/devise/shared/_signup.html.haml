@@ -1,0 +1,36 @@
+.row
+  -if !devise_error_messages!.blank?
+    .span12
+      .alert.alert-error
+        = devise_error_messages!
+  .span1
+  .span8.pane.poll-pane
+    .row-fluid
+      %h1 Sign Up For Fansensus
+      .spacing
+    .row
+      .span1
+      .span5.floatleft.login-first
+        %h4 Sign Up With Facebook
+        %p [ Recommended ]
+        .spacing
+        = link_to image_tag('fb_signin.png'), user_omniauth_authorize_path(:facebook), :class =>"fb_signup"
+        .spacing
+        %ul
+          %li See how your friends voted
+          %li Answer your friends questions
+          %li Easily share your polls with friends
+      .span5.floatleft
+        %h4 Sign Up
+        %p [ The Old Fashioned Way ]
+        .spacing
+        = form_for(newuser, :url => registration_path(newuser), :html=> {:class => "form-horizontal"}) do |f|
+          = f.email_field :firstname, :class => "input-medium", :placeholder => "First Name"
+          = f.email_field :lastname, :class => "input-medium", :placeholder => "Last Name"
+          = f.email_field :alias, :class => "input-medium", :placeholder => "Alias"
+          = f.email_field :email, :class => "input-medium", :placeholder => "Email"
+          = f.password_field :password, :class => "input-medium", :placeholder => "Password"
+          = f.password_field :password_confirmation, :class => "input-medium"        
+          .form-actions
+            =f.submit "Sign up",:class => "btn btn-success btn-large"
+
