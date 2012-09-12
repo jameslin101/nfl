@@ -31,7 +31,8 @@ class Stat
   field :opp, type: String
   field :team, type: String
   field :games, type: Integer
-  field :_id, type: String, default: ->{(season + "_" + week).to_s.parameterize}
+  field :season_week, type: String, default: ->{(season.to_s + "_" + week.to_s).parameterize}
+  field :_id, type: String
   
   attr_accessible :season, :team, :games
   embedded_in :nfl_player

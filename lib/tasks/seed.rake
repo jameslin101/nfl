@@ -108,8 +108,7 @@ def wait(i)
 end
 
 def parse_football_player_list(player_type, url, week)
-  year = 2011
-  #year = Time.today.year
+  year = Date.today.year
   agent = Mechanize.new
   rank_count = 0
 
