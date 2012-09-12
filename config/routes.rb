@@ -25,6 +25,12 @@ Nfl::Application.routes.draw do
 
   match "incoming_mail" => "mailgun#incoming_mail"
 
+  match "about" => "info#about", :as => :about
+  match "tos" => "info#tos", :as => :tos
+  match "privacy" => "info#privacy", :as => :privacy
+  match "contact" => "info#contact", :as => :contact
+  
+    
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

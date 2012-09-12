@@ -8,7 +8,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username,
+                  :terms_of_service
 
   has_many :polls
   has_and_belongs_to_many :poll_options
@@ -24,14 +25,20 @@ class User
   field :urls,              :type => Hash
   field :location,          :type => String
   field :verified,          :type => Boolean
+  field :terms_of_service,  :type => Integer, :default => 0
+  
   
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
-
+  
   #validates_presence_of :email
   #validates_presence_of :encrypted_password
-  
+  validates_acceptance_of :terms_of_service, :accept => 1 
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_presence_of :username
+
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -62,7 +69,7 @@ class User
 
   def abbr_name
     if self.first_name && self.last_name
-      return self.first_name + " " + self.last_name[0] + "."
+      return self.first_name.to_s + " " + self.last_name[0].to_s + "."
     end
   end
 

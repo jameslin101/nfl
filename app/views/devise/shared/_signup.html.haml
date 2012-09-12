@@ -32,6 +32,10 @@
             = f.text_field :username, :class => "input-medium", :placeholder => "Username"
             = f.email_field :email, :class => "input-medium", :placeholder => "Email"
             = f.password_field :password, :class => "input-medium", :placeholder => "Password"
-            = f.password_field :password_confirmation, :class => "input-medium", :placeholder => "Confirm Password"        
+            = f.password_field :password_confirmation, :class => "input-medium", :placeholder => "Confirm Password"  
+            %p
+            = f.check_box :terms_of_service, :class => "checkbox"
+            I agree to Fansensus
+            = link_to "terms and conditions.", tos_path     
           =f.submit "Sign up",:class => "btn btn-success btn-large"
 

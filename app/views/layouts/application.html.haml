@@ -49,7 +49,8 @@
               %li.divider
               %li= link_to "Sign out", destroy_user_session_path         
             - else 
-              %li= link_to "Sign in", new_user_session_path       
+              %li= link_to "Sign in", new_user_session_path
+              %li= link_to "Sign up", new_user_registration_path                         
         .nav-collpase
           %ul.nav
             %li= link_to "My Polls", my_polls_path
@@ -64,7 +65,7 @@
         .alert.alert-error
           = flash[:error]
       = yield
-%footer
+%footer{:style => "padding-top: 60px"}
   .navbar.navbar-fixed-bottom
     .navbar-inner
       .container-fluid
