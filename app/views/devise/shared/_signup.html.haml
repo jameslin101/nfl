@@ -36,6 +36,8 @@
             %p
             = f.check_box :terms_of_service, :class => "checkbox"
             I agree to Fansensus
-            = link_to "terms and conditions.", tos_path     
-          =f.submit "Sign up",:class => "btn btn-success btn-large"
+            = link_to "Terms", tos_path  
+            and
+            = link_to "Privacy Policy", privacy_path
+            =f.submit "Sign up",:class => "btn btn-success btn-large"
 
