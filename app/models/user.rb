@@ -104,6 +104,7 @@ class User
     user.urls = auth.info.urls    
     user.location = auth.info.url
     user.verified = auth.info.verified
+    user.terms_of_service = 1
     user.save!
     user
   end
