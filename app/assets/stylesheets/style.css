@@ -10,6 +10,15 @@ A6A408 - Light Green
 */
 
  /* Base Standards Overrides */
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.dropdown-menu .divider {
+	background: black;
+	color: black;
+}
 
 body {
 	font-size: 0.9em;
@@ -23,7 +32,8 @@ body {
 
 h1 {
 	font-size: 1.9em;
-	color: #000;
+/*	color: #000;*/
+	color: #339900;
 	display: inline;
 	line-height: normal;
 }
@@ -43,8 +53,14 @@ h4 {
 	line-height: normal;
 }
 
+input[type=text],
+input[type=password] {
+	height: 300%;
+}
+
 table {
 	font-size: 1em;
+	max-width: 100%;
 }
 
 	.player-pane table {
@@ -56,6 +72,10 @@ table {
 	}
 
 p {}
+
+.row-fluid {
+	max-width: 100%;
+}
 
 .clear {
 	display:block;
@@ -72,6 +92,17 @@ p {}
 
 .floatright{
 	float:right;
+}
+
+.half {
+	margin-left: 5%;
+	width: 40%;
+	float: left;
+}
+
+.hideme-showme {
+	display: none;
+	opacity: 0;
 }
 
 /* Custom Styles */
@@ -115,7 +146,7 @@ font-weight: 690;
 }
 
 /* Pane Styles */
-.pane {
+/*.pane {
 	display: block;
 	float: left;
 	overflow: hidden;
@@ -127,11 +158,10 @@ font-weight: 690;
 
 	font-size: 1em;
 	border: 1px solid #663300;
-	/*border: 1px solid orange;*/
-	background: lightyellow;
+	background: #FFFFFF;
 	-moz-border-radius: 15px;
 	-webkit-border-radius: 15px;
-	border-radius: 15px;
+	border-radius: 15px;	
 }
 
 	.grey-pane {
@@ -146,6 +176,45 @@ font-weight: 690;
 		background: #FFFFFF;
 	}
 
+	.clear-pane {
+		font-size: 1.2em;
+		background: none;
+	}
+
+*/
+.pane {
+	display: block;
+	float: left;
+	overflow: hidden;
+	color: #FFFFFF;
+
+	width: 90%;
+	padding: 20px 20px 20px 20px;		
+	margin: 15px 0 0 0;
+
+	font-size: 1em;
+	border: 1px solid #000000;
+	background: #000000;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;	
+}
+	.pane .table tbody tr:hover td,
+	.pane .table tbody tr:hover th {
+	  background-color: #002700;
+	}
+
+	.login-first {
+		padding-bottom:5%;
+		margin-bottom:5%;
+		border-bottom: #FFFFFF 1px solid;
+	}
+
+	.minor-pane {
+		font-size: 0.8em;
+		opacity: 0.7;
+	}
+
 	.player-pane {
 		/*background: url(http://www.andreas.blicher.info/images/talabheim_paper.jpg) no-repeat center center fixed; */
 		background: url(http://www.andreas.blicher.info/images/talabheim_paper.jpg) no-repeat center center fixed; 
@@ -154,6 +223,38 @@ font-weight: 690;
 		border-radius: 0;
 		float:left;
 	}
+
+.container-full {
+	width: 100%;
+	max-width: 100%;
+	background: black;
+	margin: 3em 0;
+}
+	.container-full h1 {
+		font-size: 3em;
+		margin: 6.127659574468% ;
+	}
+	
+	.container-full h2 {
+		font-size: 1.9em;
+		margin-left: 6.127659574468%;
+		margin-bottom: 1.5em;
+	}
+
+	.container-full h4 {
+		font-size: 1.3em;
+	}
+
+	.container-full .container-fluid {
+		padding: 1em;
+	}
+
+	.container-full .item {
+		margin-left: 6.127659574468%;
+		width: 26.914893617021%;
+		float: left;
+	}
+
 
 
 /* Sticky Footer */
@@ -186,10 +287,31 @@ footer .navbar .nav > li > p {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
-
 /* Responsive Design */
-
-@media only screen and (max-width:420px) {
-
+@media only screen and (min-width:420px) {
 }
 
+/*** ***/
+@media only screen and (min-width:768px) {
+	.hideme-showme {
+		display: inherit;
+		opacity: inherit;
+	}
+	.login-first {
+		border-bottom: none;
+		border-right: #FFFFFF 1px solid;
+		margin-right: 5%;
+		padding-right: 5%;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+
+}
+/*** Header Bar Disappears ***/
+@media only screen and (min-width:980px) {
+	.showme-hideme {
+		display: none;
+		opacity: 0;		
+	}
+
+}
