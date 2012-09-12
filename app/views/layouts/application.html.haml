@@ -53,6 +53,7 @@
               %li= link_to "Sign up", new_user_registration_path                         
         .nav-collapse
           %ul.nav
+            %li= link_to "Create Poll", new_poll_path
             %li= link_to "My Polls", my_polls_path
             %li= link_to "My Votes", my_votes_path
             %li= link_to "Leaderboard", leaderboard_path
@@ -77,17 +78,8 @@
         .nav-collapse
           %ul.nav
             %li
-              %p © Fansensus 2012
-            %li
-              %a{:href => "#"}
-                About Us
-            %li
-              %a{:href => "#"}
-                Terms of Service
-            %li
-              %a{:href => "#"}
-                Privacy Policy
-            %li
-              %a{:href => "#"}
-                Contact Us
-        / /.nav-collapse
+              %p &copy; Fansensus 2012
+            %li= link_to "About Us", about_path
+            %li= link_to "Terms of Service", tos_path
+            %li= link_to "Privacy Policy", privacy_path
+            %li= link_to "Contact Us", contact_path
