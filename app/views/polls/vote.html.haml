@@ -13,4 +13,6 @@
       %h1 You have answered all the polls! <br>
       <br>
       =link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
+  -if !user_signed_in?
+    =render "polls/info"
       
