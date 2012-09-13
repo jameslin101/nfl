@@ -4,6 +4,9 @@
     = render "polls/poll_show_form", {:poll => @poll}
     -if @last_poll
       = render "polls/results", {:poll => @last_poll, :last_poll => true }
+    -else
+      = render "polls/how_it_works"  
+    
     =render "poll_options/stats", {:poll => @poll}                
   -else
     .poll-pane.span6.pane

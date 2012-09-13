@@ -1,0 +1,31 @@
+.span3.pane.minor-pane
+  .row-fluid
+    %h1 How It Works:
+  .row-fluid
+    .span7.floatleft
+      %p
+      1. Login With Facebook
+      %br
+      2. Create a Poll
+      %br
+      3. Vote on Questions
+      %br
+      4. Raise Fantasy IQ (FIQ)
+      %br
+      5. Share With Friends
+      %br
+      6. Win Prizes
+      %br
+      .spacing
+      =image_tag("fb-button.png", :width => "200px")
+      %br
+      %br
+      %p
+      = link_to "Sign in", new_user_session_path
+      or
+      = link_to "Sign up", new_user_registration_path
+    / /span
+    .span4.floatleft
+    / /span
+  / /row-fluid
+/ /span
