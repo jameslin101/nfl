@@ -1,26 +1,25 @@
-%h2
+.span1
+.poll-pane.span10.pane
   Your current Fantasy IQ (FIQ):
   =current_user.fiq
-%p
+  %p
 
-.navbar
-  .navbar-inner2
-    %ul.nav
-      -(0..17).each do |week|
-        - if week == @week 
-          %li.active2
-            - if week == 0 
-              =link_to "All Weeks", my_votes_path(:week => week)
-            - else
-              =link_to week, my_votes_path(:week => week)
-        - else 
-          %li
-            - if week == 0
-              =link_to "All Weeks", my_votes_path(:week => week)
-            - else
-              =link_to week, my_votes_path(:week => week)
-<br>
-%h2 Your votes:
+  .navbar
+    .navbar-inner2
+      %ul.nav
+        -(0..17).each do |week|
+          - if week == @week 
+            %li.active2
+              - if week == 0 
+                =link_to "All Weeks", my_votes_path(:week => week)
+              - else
+                =link_to week, my_votes_path(:week => week)
+          - else 
+            %li
+              - if week == 0
+                =link_to "All Weeks", my_votes_path(:week => week)
+              - else
+                =link_to week, my_votes_path(:week => week)
 .row
 -if @polls
   -@polls.each do |poll|

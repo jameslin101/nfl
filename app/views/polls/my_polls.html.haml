@@ -1,8 +1,6 @@
-.row.span12
+.span1
+.poll-pane.span10.pane
   %h1 My Poll Results
-  <br><br>
-  =link_to 'Create New Poll', new_poll_path, :class => "btn btn-large"
-  <br><br>
 -@polls.each do |poll|
   =render "polls/view_poll", :poll => poll
   =render "polls/results", {:poll => poll, :last_poll => true}
